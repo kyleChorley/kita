@@ -57,8 +57,6 @@ const index = require("./routes/index");
 app.use("/", index);
 
 app.get("/api/kita", function(req, res) {
-  console.log("KKKIIITTTAAA", req);
-  // res.render("index", req);
   Kita.find({}).then(eachOne => {
     res.json(eachOne);
   });

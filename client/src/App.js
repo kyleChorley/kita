@@ -4,7 +4,7 @@ import "./App.css";
 // import ReactMapGL, { Marker } from "react-map-gl";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
-import { ReactMapboxGlCluster } from "react-mapbox-gl-cluster";
+// import { ReactMapboxGlCluster } from "react-mapbox-gl-cluster";
 import axios from "axios";
 
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_TOKEN}`;
@@ -94,7 +94,6 @@ class App extends Component {
   }
 
   render() {
-    const { data, coordinates } = this.state;
     return (
       <div>
         <div
