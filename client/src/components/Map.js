@@ -13,11 +13,11 @@ mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_TOKEN}`;
 
 class Map extends Component {
   state = {
-    lat: 52.5167669,
-    lng: 13.3963911,
-    width: "100vw",
+    lat: 52.518365,
+    lng: 13.341646,
+    width: "60vw",
     height: "100vh",
-    zoom: 14,
+    zoom: 16,
     data: [],
     coordinates: []
   };
