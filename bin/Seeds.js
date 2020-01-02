@@ -70757,7 +70757,7 @@ return kita
 
 Kita.insertMany(processedKitas)
 .then(documents => {
-  console.log(`Success! ${documents.length},books were added`);
+  console.log(`Success! ${documents.length}, kitas were added`);
   mongoose.connection.close();
 })
 .catch(err => {
