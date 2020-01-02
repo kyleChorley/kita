@@ -3,7 +3,8 @@
   width: 100%;
   position: fixed;
   margin: 0;
-  box-shadow: lightgrey;
+  box-shadow: -2px 2px 4px rgb(145, 145, 145);
+  z-index: 1;
 }
 
 .flex {
