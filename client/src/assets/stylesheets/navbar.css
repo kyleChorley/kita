@@ -19,11 +19,12 @@ ul {
 }
 
 li {
-  margin: 20px;
+  padding: 20px;
+  border-left: 0.025em solid rgb(145, 145, 145);
 }
 
-.s-between {
-  justify-content: space-between;
+li:hover {
+  background: lightgrey;
 }
 
 .center {
