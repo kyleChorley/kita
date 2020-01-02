@@ -1,0 +1,38 @@
+.nav {
+  height: 5em;
+  width: 100%;
+  position: fixed;
+  margin: 0;
+  box-shadow: -2px 2px 4px rgb(145, 145, 145);
+  z-index: 1;
+}
+
+.flex {
+  display: flex;
+}
+
+ul {
+  width: 100%;
+  list-style: none;
+  text-decoration: none;
+  display: block;
+  margin: 0;
+  justify-content: flex-end;
+}
+
+li {
+  padding: 20px;
+  border-left: 0.025em solid lightgrey;
+}
+
+li:hover {
+  background: lightgrey;
+}
+
+.center {
+  align-items: center;
+}
+
+img {
+  height: 80px;
+}
