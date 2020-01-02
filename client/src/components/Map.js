@@ -16,7 +16,7 @@ class Map extends Component {
     lat: 52.5167669,
     lng: 13.3963911,
     width: "100vw",
-    height: "50%",
+    height: "100vh",
     zoom: 14,
     data: [],
     coordinates: []
