@@ -5,7 +5,7 @@
   border-radius: 0.2em;
 }
 
-.card h3 {
+.card h4 {
   width: 75%;
   margin: 0em;
 }
@@ -33,4 +33,9 @@ span {
 
 hr {
   border: 1px solid lightgray;
+}
+
+.address p {
+  font-size: 0.825em;
+  margin: 0.2em 0;
 }

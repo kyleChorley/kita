@@ -54,7 +54,7 @@ class KitaDetailCard extends React.Component {
       return (
         <div key={_id} className="card">
           <div className="card-header flex">
-            <h3>{name}</h3>
+            <h4>{name}</h4>
             <p>ab {fruehestesAufnahmealterInMonaten} M.</p>
           </div>
           <span>
@@ -64,14 +64,15 @@ class KitaDetailCard extends React.Component {
           <p>
             {einrichtungsart} in {viertel}
           </p>
-
-          <div>
-            <FontAwesomeIcon icon={faPhoneSquareAlt} className="icon" />
-            {telefon}
-          </div>
-          <div>
-            <FontAwesomeIcon icon={faEnvelopeSquare} className="icon" />
-            {email}
+          <div className="address">
+            <p>
+              <FontAwesomeIcon icon={faPhoneSquareAlt} className="icon" />
+              {telefon}
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faEnvelopeSquare} className="icon" />
+              {email}
+            </p>
           </div>
 
           <span>
