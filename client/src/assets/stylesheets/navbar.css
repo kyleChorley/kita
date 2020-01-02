@@ -1,6 +1,35 @@
 .nav {
   height: 5em;
   width: 100%;
-  background-color: lightslategrey;
   position: fixed;
+  margin: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+ul {
+  width: 100%;
+  list-style: none;
+  text-decoration: none;
+  display: block;
+  margin: 0;
+  justify-content: flex-end;
+}
+
+li {
+  margin: 20px;
+}
+
+.s-between {
+  justify-content: space-between;
+}
+
+.center {
+  align-items: center;
+}
+
+img {
+  height: 60px;
 }
