@@ -29,9 +29,9 @@ class Map extends Component {
         let point = res.data.map(data => {
           return [data.long, data.lat];
         });
-        console.log("We have our data", res.data);
+        // console.log("We have our data", res.data);
         this.setState({ data: res.data, coordinates: point }, () => {
-          console.log("COORDINATES", this.state.coordinates);
+          // console.log("COORDINATES", this.state.coordinates);
         });
         const map = new mapboxgl.Map({
           container: this.mapContainer,

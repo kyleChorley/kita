@@ -1,9 +1,9 @@
 .nav {
   height: 5em;
   width: 100%;
-  position: fixed;
   margin: 0;
   box-shadow: -2px 2px 4px rgb(145, 145, 145);
+  position: sticky;
   z-index: 1;
 }
 
