@@ -3,6 +3,11 @@ import axios from "axios";
 
 // Style
 import "../assets/stylesheets/kitaDetailCard.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPhoneSquareAlt,
+  faEnvelopeSquare
+} from "@fortawesome/free-solid-svg-icons";
 
 class KitaDetailCard extends React.Component {
   state = {
@@ -15,7 +20,7 @@ class KitaDetailCard extends React.Component {
         return kita;
       });
       this.setState({
-        kitas: kitas.slice(0, 10)
+        kitas: kitas.slice(0, 30)
       });
     });
   };
@@ -48,7 +53,32 @@ class KitaDetailCard extends React.Component {
 
       return (
         <div key={_id} className="card">
-          <h1>{name}</h1>
+          <div className="card-header flex">
+            <h4>{name}</h4>
+            <p>ab {fruehestesAufnahmealterInMonaten} M.</p>
+          </div>
+          <span>
+            {adresse}, {postleitzahl} {stadt}
+          </span>
+          <hr />
+          <p>
+            {einrichtungsart} in {viertel}
+          </p>
+          <div className="address">
+            <p>
+              <FontAwesomeIcon icon={faPhoneSquareAlt} className="icon" />
+              {telefon}
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faEnvelopeSquare} className="icon" />
+              {email}
+            </p>
+          </div>
+
+          <span>
+            <hr />
+            Träger: <strong>{traegerart}</strong>
+          </span>
         </div>
       );
     });

@@ -15,7 +15,7 @@ class Map extends Component {
   state = {
     lat: 52.521143,
     lng: 13.334274,
-    width: "60vw",
+    width: "70%",
     height: "100vh",
     zoom: 16,
     data: [],
