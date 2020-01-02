@@ -6,12 +6,14 @@ import "./App.css";
 // components
 import Navbar from "./components/Navbar";
 import Map from "./components/Map";
+import CardList from "./components/CardList";
 
 class App extends Component {
   render() {
     return (
       <div>
         <Navbar />
+        <CardList />
         <Map />
       </div>
     );
