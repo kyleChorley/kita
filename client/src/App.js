@@ -6,6 +6,7 @@ import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 // import { ReactMapboxGlCluster } from "react-mapbox-gl-cluster";
 import axios from "axios";
+import useSupercluster from "react-supercluster";
 
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_TOKEN}`;
 
