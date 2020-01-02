@@ -1,10 +1,36 @@
 .card {
-  padding: 0em 1em;
+  padding: 1em 1em;
   margin: 0.5em 0.5em;
   border: 1px solid lightgray;
-  border-radius: 0.5em;
+  border-radius: 0.2em;
 }
 
-.card h1 {
-  font-size: 1.5em;
+.card h3 {
+  width: 75%;
+  margin: 0em;
+}
+
+.card-header {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header p {
+  margin: 0;
+}
+
+span {
+  font-size: 0.8em;
+}
+
+.icon {
+  margin-right: 0.5em;
+}
+
+.flex {
+  display: flex;
+}
+
+hr {
+  border: 1px solid lightgray;
 }
