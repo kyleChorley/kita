@@ -74,7 +74,6 @@ class KitaDetailCard extends React.Component {
               {email}
             </p>
           </div>
-
           <span>
             <hr />
             Träger: <strong>{traegerart}</strong>
