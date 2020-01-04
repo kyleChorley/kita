@@ -68,11 +68,10 @@ function HooksMap() {
       }}
       ref={mapRef}
     >
-      {/* {clusters.map(cluster => {
-        console.log(cluster);
+      {clusters.map(cluster => {
         // every cluster point has coordinates
-        const [longitude, latitude] = cluster.points;
-        // the point may be either a cluster or a kita
+        const [longitude, latitude] = cluster.geometry.coordinates;
+        // the point may be either a cluster or a crime point
         const {
           cluster: isCluster,
           point_count: pointCount
@@ -89,14 +88,15 @@ function HooksMap() {
               <div
                 className="cluster-marker"
                 style={{
-                  width: `${10 + (pointCount / points.length) * 50}px`,
-                  height: `${10 + (pointCount / points.length) * 50}px`
+                  width: `${10 + (pointCount / points.length) * 20}px`,
+                  height: `${10 + (pointCount / points.length) * 20}px`
                 }}
                 onClick={() => {
                   const expansionZoom = Math.min(
                     supercluster.getClusterExpansionZoom(cluster.id),
                     20
                   );
+
                   setViewport({
                     ...viewport,
                     latitude,
@@ -113,20 +113,21 @@ function HooksMap() {
               </div>
             </Marker>
           );
-        } */}
-      {/* // we have a single point (kita) to render return ( */}
-      {clusters.map(kita => (
-        <Marker
-          key={kita.kitaId}
-          // latitude={parseFloat(kita.lat)}
-          // longitude={parseFloat(kita.long)}
-          longitude={parseFloat(kita.geometry.coordinates[0])}
-          latitude={parseFloat(kita.geometry.coordinates[1])}
-        >
-          <button>KITA</button>
-        </Marker>
-      ))}
-      {/* ); })} */}
+        }
+
+        {
+          // we have a single point (kita) to render return
+        }
+        return (
+          <Marker
+            key={cluster.kitaId}
+            longitude={parseFloat(cluster.geometry.coordinates[0])}
+            latitude={parseFloat(cluster.geometry.coordinates[1])}
+          >
+            <button>KITA</button>
+          </Marker>
+        );
+      })}
     </ReactMapGL>
   );
 }
