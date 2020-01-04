@@ -46,3 +46,8 @@
     transform: rotate(360deg);
   }
 } */
+
+.main-app {
+  display: flex;
+  flex-direction: row;
+}
