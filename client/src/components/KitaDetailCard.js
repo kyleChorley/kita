@@ -20,7 +20,7 @@ class KitaDetailCard extends React.Component {
         return kita;
       });
       this.setState({
-        kitas: kitas.slice(0, 30)
+        kitas: kitas
       });
     });
   };
