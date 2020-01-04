@@ -1,9 +1,9 @@
 .nav {
-  height: 5em;
+  height: 4em;
   width: 100%;
-  position: fixed;
   margin: 0;
   box-shadow: -2px 2px 4px rgb(145, 145, 145);
+  position: sticky;
   z-index: 1;
 }
 
@@ -23,6 +23,7 @@ ul {
 li {
   padding: 20px;
   border-left: 0.025em solid lightgrey;
+  font-size: 0.825em;
 }
 
 li:hover {

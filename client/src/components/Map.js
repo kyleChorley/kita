@@ -13,9 +13,9 @@ mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_TOKEN}`;
 
 class Map extends Component {
   state = {
-    lat: 52.518365,
-    lng: 13.341646,
-    width: "60vw",
+    lat: 52.521143,
+    lng: 13.334274,
+    width: "70%",
     height: "100vh",
     zoom: 16,
     data: [],
@@ -29,9 +29,9 @@ class Map extends Component {
         let point = res.data.map(data => {
           return [data.long, data.lat];
         });
-        console.log("We have our data", res.data);
+        // console.log("We have our data", res.data);
         this.setState({ data: res.data, coordinates: point }, () => {
-          console.log("COORDINATES", this.state.coordinates);
+          // console.log("COORDINATES", this.state.coordinates);
         });
         const map = new mapboxgl.Map({
           container: this.mapContainer,
