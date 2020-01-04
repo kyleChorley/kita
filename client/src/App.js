@@ -13,11 +13,13 @@ import HooksMap from "./components/HooksMap";
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="main-app">
         <Navbar />
-        <CardList />
-        {/* <Map /> */}
-        <HooksMap />
+        <div className="cardMap-container">
+          <CardList />
+          {/* <Map /> */}
+          <HooksMap />
+        </div>
       </div>
     );
   }

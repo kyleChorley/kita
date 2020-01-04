@@ -53,7 +53,7 @@ function HooksMap() {
     points,
     bounds,
     zoom: viewport.zoom,
-    options: { radius: 60, maxZoom: 20 }
+    options: { radius: 45, maxZoom: 20 }
   });
 
   // console.log(points);
