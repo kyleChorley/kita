@@ -7,6 +7,8 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Map from "./components/Map";
 import CardList from "./components/CardList";
+// import Map from "./components/Map";
+import HooksMap from "./components/HooksMap";
 
 class App extends Component {
   render() {
@@ -14,7 +16,8 @@ class App extends Component {
       <div>
         <Navbar />
         <CardList />
-        <Map />
+        {/* <Map /> */}
+        <HooksMap />
       </div>
     );
   }
