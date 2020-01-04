@@ -3,6 +3,7 @@
   margin: 0.5em 0.5em;
   border: 1px solid lightgray;
   border-radius: 0.2em;
+  box-shadow: 2px 2px 4px rgb(145, 145, 145);
 }
 
 .card h4 {
