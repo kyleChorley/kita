@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 } */
+
+.main-app {
+  display: flex;
+  flex-direction: column;
+}
+.cardMap-container {
+  display: flex;
+  flex-direction: row;
+}
