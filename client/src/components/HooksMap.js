@@ -56,7 +56,7 @@ function HooksMap() {
     options: { radius: 60, maxZoom: 20 }
   });
 
-  console.log(points);
+  // console.log(points);
 
   return (
     <ReactMapGL

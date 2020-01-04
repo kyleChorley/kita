@@ -18,6 +18,7 @@
     "react-map-gl": "^5.1.5",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
+    "react-supercluster": "^1.0.0",
     "use-supercluster": "^0.2.3"
   },
   "scripts": {
