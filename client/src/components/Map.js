@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 // import { ReactMapboxGlCluster } from "react-mapbox-gl-cluster";
+import useSupercluster from "react-supercluster";
 import axios from "axios";
 
 // style
@@ -17,7 +18,7 @@ class Map extends Component {
     lng: 13.341646,
     width: "60vw",
     height: "100vh",
-    zoom: 16,
+    zoom: 14,
     data: [],
     coordinates: []
   };
@@ -40,7 +41,7 @@ class Map extends Component {
           zoom: this.state.zoom
         });
 
-        var geocoder = new MapboxGeocoder({
+        const geocoder = new MapboxGeocoder({
           // Initialize the geocoder
           accessToken: mapboxgl.accessToken, // Set the access token
           mapboxgl: mapboxgl, // Set the mapbox-gl instance
@@ -51,10 +52,10 @@ class Map extends Component {
         map.addControl(geocoder);
 
         const location = res.data.map(point => {
-          var markerHeight = 55,
+          const markerHeight = 55,
             markerRadius = 35,
             linearOffset = 25;
-          var popupOffsets = {
+          const popupOffsets = {
             top: [0, 0],
             "top-left": [0, 0],
             "top-right": [0, 0],

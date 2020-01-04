@@ -5,14 +5,16 @@ import "./App.css";
 
 // components
 import Navbar from "./components/Navbar";
-import Map from "./components/Map";
+// import Map from "./components/Map";
+import HooksMap from "./components/HooksMap";
 
 class App extends Component {
   render() {
     return (
       <div>
         <Navbar />
-        <Map />
+        {/* <Map /> */}
+        <HooksMap />
       </div>
     );
   }
