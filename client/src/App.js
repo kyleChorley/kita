@@ -5,7 +5,7 @@ import "./App.css";
 
 // components
 import Navbar from "./components/Navbar";
-import Map from "./components/Map";
+// import Map from "./components/Map";
 import CardList from "./components/CardList";
 // import Map from "./components/Map";
 import HooksMap from "./components/HooksMap";
@@ -15,9 +15,11 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <CardList />
-        {/* <Map /> */}
-        <HooksMap />
+        <div className="main-app">
+          <CardList />
+          {/* <Map /> */}
+          <HooksMap />
+        </div>
       </div>
     );
   }
