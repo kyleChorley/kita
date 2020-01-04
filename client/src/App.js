@@ -13,9 +13,9 @@ import HooksMap from "./components/HooksMap";
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="main-app">
         <Navbar />
-        <div className="main-app">
+        <div className="cardMap-container">
           <CardList />
           {/* <Map /> */}
           <HooksMap />
