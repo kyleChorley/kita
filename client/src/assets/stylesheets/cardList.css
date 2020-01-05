@@ -1,5 +1,6 @@
 .card-list {
   width: 30%;
+  min-width: 350px;
   max-height: 90vh;
   overflow: scroll;
   margin-right: 0;
