@@ -15,8 +15,9 @@ class KitaDetailCard extends React.Component {
   };
 
   getData = () => {
-    axios.get("/api/kita").then(res => {
-      const kitas = res.data.map(kita => {
+    axios.get("/api/kita?page=1&limit=10").then(res => {
+      console.log(res);
+      const kitas = res.data.results.map(kita => {
         return kita;
       });
       this.setState({
