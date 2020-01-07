@@ -33,7 +33,7 @@ function HooksMap() {
     axios
       .get("/api/kita")
       .then(res => {
-        console.log("We have our data", res.data.results);
+        // console.log("We have our data", res.data.results);
         setData(res.data.results);
       })
       .catch(err => {
