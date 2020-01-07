@@ -11,8 +11,8 @@ function HooksMap() {
   const [viewport, setViewport] = useState({
     latitude: 52.518365,
     longitude: 13.341646,
-    width: "100vw",
-    height: "100vh",
+    width: "70%",
+    height: "90vh",
     zoom: 12
   });
   const [showPopup, setShowPopup] = useState({ showPopup: true });
@@ -70,6 +70,7 @@ function HooksMap() {
         setViewport({ ...newViewport });
       }}
       ref={mapRef}
+      className="cardMap-container"
     >
       {clusters.map(cluster => {
         // every cluster point has coordinates
