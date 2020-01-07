@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import ReactMapGL, { Marker, FlyToInterpolator } from "react-map-gl";
+import ReactMapGL, { Marker, FlyToInterpolator, Popup } from "react-map-gl";
 // import mapboxgl from "mapbox-gl";
 import useSupercluster from "use-supercluster";
 import axios from "axios";
 import "../assets/stylesheets/map.css";
+// import KitaDetailCard from "./KitaDetailCard";
 
 function HooksMap() {
   const [data, setData] = useState([]);
@@ -14,6 +15,7 @@ function HooksMap() {
     height: "100vh",
     zoom: 12
   });
+  const [showPopup, setShowPopup] = useState({ showPopup: true });
 
   const points = data.map(kitas => ({
     type: "Feature",
@@ -60,6 +62,7 @@ function HooksMap() {
 
   return (
     <ReactMapGL
+      mapStyle="mapbox://styles/mapbox/outdoors-v11"
       {...viewport}
       maxZoom={20}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
@@ -115,16 +118,27 @@ function HooksMap() {
           );
         }
 
-        {
-          // we have a single point (kita) to render return
-        }
         return (
           <Marker
-            key={cluster.kitaId}
-            longitude={parseFloat(cluster.geometry.coordinates[0])}
-            latitude={parseFloat(cluster.geometry.coordinates[1])}
+            key={cluster.properties.kitaId}
+            latitude={latitude}
+            longitude={longitude}
           >
-            <button>KITA</button>
+            {showPopup && (
+              <Popup
+                latitude={latitude}
+                longitude={longitude}
+                anchor="bottom"
+                dynamicPosition={true}
+                closeButton={true}
+                closeOnClick={true}
+                onClose={() => setShowPopup({ showPopup: false })}
+              >
+                YAY! A POPUP
+                {/* <KitaDetailCard /> */}
+              </Popup>
+            )}
+            <button className="kita-marker"></button>
           </Marker>
         );
       })}

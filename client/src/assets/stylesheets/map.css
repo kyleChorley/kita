@@ -15,3 +15,15 @@
   justify-content: center;
   align-items: center;
 }
+
+.kita-marker {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgb(55, 120, 194);
+}
+
+.kita-marker img {
+  width: 25px;
+}
