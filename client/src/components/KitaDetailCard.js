@@ -22,7 +22,7 @@ function KitaDetailCard(props) {
     phone,
     mail,
     owner
-  } = props;
+  } = props.kitaInfo;
 
   return (
     <div className="card">
