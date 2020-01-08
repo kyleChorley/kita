@@ -21,7 +21,17 @@ function HooksMap() {
     type: "Feature",
     properties: {
       cluster: false,
-      kitaId: kitas._id
+      kitaId: kitas._id,
+      fromAge: kitas.fruehestesAufnahmealterInMonaten,
+      name: kitas.name,
+      address: kitas.adresse,
+      postCode: kitas.postleitzahl,
+      city: kitas.stadt,
+      cityQuarter: kitas.stadt,
+      type: kitas.einrichtungsart,
+      phone: kitas.telefon,
+      mail: kitas.email,
+      owner: kitas.traegerart
     },
     geometry: {
       types: "Point",
@@ -35,8 +45,8 @@ function HooksMap() {
     axios
       .get("/api/kita")
       .then(res => {
-        console.log("We have our data", res.data);
-        setData(res.data);
+        console.log("We have our data", res.data.results);
+        setData(res.data.results);
       })
       .catch(err => {
         console.log(err);
@@ -143,7 +153,7 @@ function HooksMap() {
                   onClose={() => setShowPopup(false)}
                 >
                   YAY! A POPUP
-                  {/* <KitaDetailCard /> */}
+                  {/* <KitaDetailCard kitaInfo={points.properties} /> */}
                 </Popup>
               ) : null}
             </div>
