@@ -63,7 +63,10 @@ app.get("/api/kita", paginatedResults(Kita), (req, res) => {
 
 function paginatedResults(model) {
   return async (req, res, next) => {
-    const query = req.query.q;
+    const query = req.query.q === undefined ? "" : req.query.q;
+
+    console.log("app.js:", query);
+
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
 
@@ -89,14 +92,25 @@ function paginatedResults(model) {
       };
     }
     try {
-      results.results = await model
-        .find({})
-        // .find({ name: query })
-        .limit(limit)
-        .skip(startIndex)
-        .exec();
-      res.paginatedResults = results;
-      next();
+      if (query === "") {
+        results.results = await model
+          .find({})
+          // .find({ $text: { $search: query } })
+          .limit(limit)
+          .skip(startIndex)
+          .exec();
+        res.paginatedResults = results;
+        next();
+      } else {
+        results.results = await model
+          // .find({})
+          .find({ $text: { $search: query } })
+          .limit(limit)
+          .skip(startIndex)
+          .exec();
+        res.paginatedResults = results;
+        next();
+      }
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
