@@ -63,6 +63,7 @@ app.get("/api/kita", paginatedResults(Kita), (req, res) => {
 
 function paginatedResults(model) {
   return async (req, res, next) => {
+    const query = req.query.q;
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
 
@@ -71,7 +72,10 @@ function paginatedResults(model) {
 
     const results = {};
 
-    if (endIndex < model.length) {
+    results.current = { page, limit };
+    results.numFound = await model.countDocuments().exec();
+
+    if (endIndex < (await model.countDocuments().exec())) {
       results.next = {
         page: page + 1,
         limit: limit
@@ -86,7 +90,8 @@ function paginatedResults(model) {
     }
     try {
       results.results = await model
-        .find()
+        .find({})
+        // .find({ name: query })
         .limit(limit)
         .skip(startIndex)
         .exec();
