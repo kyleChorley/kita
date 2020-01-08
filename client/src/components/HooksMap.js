@@ -4,7 +4,7 @@ import ReactMapGL, { Marker, FlyToInterpolator, Popup } from "react-map-gl";
 import useSupercluster from "use-supercluster";
 import axios from "axios";
 import "../assets/stylesheets/map.css";
-// import KitaDetailCard from "./KitaDetailCard";
+import KitaDetailCard from "./KitaDetailCard";
 
 function HooksMap() {
   const [data, setData] = useState([]);
@@ -15,7 +15,7 @@ function HooksMap() {
     height: "90vh",
     zoom: 12
   });
-  const [showPopup, setShowPopup] = useState({ showPopup: true });
+  const [showPopup, setShowPopup] = useState(false);
 
   const points = data.map(kitas => ({
     type: "Feature",
@@ -33,10 +33,10 @@ function HooksMap() {
 
   useEffect(() => {
     axios
-      .get("/api/kita?page=1")
+      .get("/api/kita")
       .then(res => {
-        console.log("We have our data", res.data.results);
-        setData(res.data.results);
+        console.log("We have our data", res.data);
+        setData(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -125,21 +125,29 @@ function HooksMap() {
             latitude={latitude}
             longitude={longitude}
           >
-            {showPopup && (
-              <Popup
-                latitude={latitude}
-                longitude={longitude}
-                anchor="bottom"
-                dynamicPosition={true}
-                closeButton={true}
-                closeOnClick={true}
-                onClose={() => setShowPopup({ showPopup: false })}
-              >
-                YAY! A POPUP
-                {/* <KitaDetailCard /> */}
-              </Popup>
-            )}
-            <button className="kita-marker"></button>
+            <div
+              className="kita-marker"
+              onClick={e => {
+                e.preventDefault();
+                setShowPopup(true);
+              }}
+            >
+              {showPopup ? (
+                <Popup
+                  latitude={latitude}
+                  longitude={longitude}
+                  anchor="bottom"
+                  dynamicPosition={true}
+                  closeButton={true}
+                  closeOnClick={true}
+                  onClose={() => setShowPopup(false)}
+                >
+                  YAY! A POPUP
+                  {/* <KitaDetailCard /> */}
+                </Popup>
+              ) : null}
+            </div>
+            {/* <button className="kita-marker"></button> */}
           </Marker>
         );
       })}
