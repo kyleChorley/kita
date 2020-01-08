@@ -34,7 +34,14 @@ function CardList() {
 
   return (
     <div className="card-list">
-      <input type="text" value={query} onChange={handleSearch} />
+      <label htmlFor="search">Search me:</label>
+      <input
+        type="text"
+        value={query}
+        onChange={handleSearch}
+        name="search"
+        id="search"
+      />
 
       {kitas.map((kita, index) => {
         const kitaInfo = {

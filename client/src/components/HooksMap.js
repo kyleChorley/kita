@@ -33,9 +33,9 @@ function HooksMap() {
 
   useEffect(() => {
     axios
-      .get("/api/kita")
+      .get("/api/kita?page=1")
       .then(res => {
-        // console.log("We have our data", res.data.results);
+        console.log("We have our data", res.data.results);
         setData(res.data.results);
       })
       .catch(err => {
