@@ -17,7 +17,7 @@ export default function useKitaSearch(query, page) {
     let cancel;
     axios({
       method: "GET",
-      url: "/api/kita?limit=10",
+      url: "/api/kita?limit=2",
       params: { q: query, page: page },
       cancelToken: new axios.CancelToken(c => (cancel = c))
     })
