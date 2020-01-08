@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function useKitaSearch(query, page) {
+export default function useKitaSearch(query, page, limit) {
   const [kitas, setKitas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -17,7 +17,7 @@ export default function useKitaSearch(query, page) {
     let cancel;
     axios({
       method: "GET",
-      url: "/api/kita?limit=2",
+      url: `/api/kita?limit=${limit}`,
       params: { q: query, page: page },
       cancelToken: new axios.CancelToken(c => (cancel = c))
     })
@@ -25,22 +25,20 @@ export default function useKitaSearch(query, page) {
         setKitas(prevKitas => {
           return [
             ...prevKitas,
-            ...res.data.results.map((kita, index) => {
-              // console.log(kita);
+            ...res.data.results.map(kita => {
               return kita;
             })
           ];
         });
         setHasMore(res.data.results.length > 0);
         setLoading(false);
-        console.log(res.data);
       })
       .catch(err => {
         if (axios.isCancel(err)) return;
         setError(true);
       });
     return () => cancel();
-  }, [query, page]);
+  }, [query, page, limit]);
 
   return { loading, error, kitas, hasMore };
 }
