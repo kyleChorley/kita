@@ -1,6 +1,6 @@
 import React from "react";
 // import axios from "axios";
-import useKitaSearch from "../useKitaSearch";
+// import useKitaSearch from "../useKitaSearch";
 
 // Style
 import "../assets/stylesheets/kitaDetailCard.css";
@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function KitaDetailCard(props) {
-  console.log("Card props:", props.kitas);
+  // console.log("Card props:", props.kitas);
   const card = [...props.kitas].map(kita => {
     const {
       _id,

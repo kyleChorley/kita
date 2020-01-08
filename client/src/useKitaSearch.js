@@ -8,12 +8,16 @@ export default function useKitaSearch(query, page) {
   const [hasMore, setHasMore] = useState(false);
 
   useEffect(() => {
+    setKitas([]);
+  }, [query]);
+
+  useEffect(() => {
     setLoading(true);
     setError(false);
     let cancel;
     axios({
       method: "GET",
-      url: "/api/kita",
+      url: "/api/kita?limit=10",
       params: { q: query, page: page },
       cancelToken: new axios.CancelToken(c => (cancel = c))
     })
@@ -21,7 +25,7 @@ export default function useKitaSearch(query, page) {
         setKitas(prevKitas => {
           return [
             ...prevKitas,
-            ...res.data.results.map(kita => {
+            ...res.data.results.map((kita, index) => {
               // console.log(kita);
               return kita;
             })
