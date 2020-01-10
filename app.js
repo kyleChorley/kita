@@ -105,7 +105,11 @@ function paginatedResults(model) {
         results.results = await model
           // .find({})
           .find(
-            { $text: { $search: query } },
+            {
+              $text: {
+                $search: query
+              }
+            },
             { score: { $meta: "textScore" } }
           )
           .limit(limit)
@@ -123,3 +127,10 @@ function paginatedResults(model) {
 }
 
 module.exports = app;
+
+// how to create an index via terminal
+// type in "mongo"
+//
+// then type in "use kita"
+//
+// then "db.kitaBerlin.createIndex({name: "text"})"

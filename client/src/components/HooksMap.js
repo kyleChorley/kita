@@ -4,7 +4,8 @@ import ReactMapGL, { Marker, FlyToInterpolator, Popup } from "react-map-gl";
 import useSupercluster from "use-supercluster";
 import axios from "axios";
 import "../assets/stylesheets/map.css";
-import KitaDetailCard from "./KitaDetailCard";
+// import KitaDetailCard from "./KitaDetailCard";
+import useKitaSearch from "../useKitaSearch";
 
 function HooksMap() {
   const [data, setData] = useState([]);
@@ -28,21 +29,6 @@ function HooksMap() {
       coordinates: [parseFloat(kitas.long), parseFloat(kitas.lat)]
     }
   }));
-
-  // const kitaInfo = data.map((kita, index) => ({
-  //   fromAge: kita.fruehestesAufnahmealterInMonaten,
-  //   name: kita.name,
-  //   address: kita.adresse,
-  //   postCode: kita.postleitzahl,
-  //   city: kita.stadt,
-  //   cityQuarter: kita.stadt,
-  //   type: kita.einrichtungsart,
-  //   phone: kita.telefon,
-  //   mail: kita.email,
-  //   owner: kita.traegerart
-  // }));
-
-  // console.log(kitaInfo);
 
   const mapRef = useRef();
 

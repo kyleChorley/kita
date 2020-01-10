@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback } from "react";
 import KitaDetailCard from "./KitaDetailCard";
+import SearchForm from "./SearchForm";
 import useKitaSearch from "../useKitaSearch";
 
 // Style
@@ -34,14 +35,7 @@ function CardList() {
 
   return (
     <div className="card-list">
-      <label htmlFor="search">Search me:</label>
-      <input
-        type="text"
-        value={query}
-        onChange={handleSearch}
-        name="search"
-        id="search"
-      />
+      <SearchForm handleSearch={handleSearch} query={query} />
 
       {kitas.map((kita, index) => {
         const kitaInfo = {
