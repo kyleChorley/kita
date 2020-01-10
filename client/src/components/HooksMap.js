@@ -4,7 +4,7 @@ import ReactMapGL, { Marker, FlyToInterpolator, Popup } from "react-map-gl";
 import useSupercluster from "use-supercluster";
 import axios from "axios";
 import "../assets/stylesheets/map.css";
-// import KitaDetailCard from "./KitaDetailCard";
+import KitaDetailCard from "./KitaDetailCard";
 
 function HooksMap() {
   const [data, setData] = useState([]);
@@ -29,13 +29,28 @@ function HooksMap() {
     }
   }));
 
+  // const kitaInfo = data.map((kita, index) => ({
+  //   fromAge: kita.fruehestesAufnahmealterInMonaten,
+  //   name: kita.name,
+  //   address: kita.adresse,
+  //   postCode: kita.postleitzahl,
+  //   city: kita.stadt,
+  //   cityQuarter: kita.stadt,
+  //   type: kita.einrichtungsart,
+  //   phone: kita.telefon,
+  //   mail: kita.email,
+  //   owner: kita.traegerart
+  // }));
+
+  // console.log(kitaInfo);
+
   const mapRef = useRef();
 
   useEffect(() => {
     axios
       .get("/api/kita?page=1")
       .then(res => {
-        console.log("We have our data", res.data.results);
+        // console.log("We have our data", res.data.results);
         setData(res.data.results);
       })
       .catch(err => {
@@ -57,8 +72,6 @@ function HooksMap() {
     zoom: viewport.zoom,
     options: { radius: 45, maxZoom: 20 }
   });
-
-  // console.log(points);
 
   return (
     <ReactMapGL
@@ -136,7 +149,7 @@ function HooksMap() {
                 onClose={() => setShowPopup({ showPopup: false })}
               >
                 YAY! A POPUP
-                {/* <KitaDetailCard /> */}
+                {/* <KitaDetailCard kitaInfo={kitaInfo} /> */}
               </Popup>
             )}
             <button className="kita-marker"></button>

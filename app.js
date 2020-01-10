@@ -104,9 +104,13 @@ function paginatedResults(model) {
       } else {
         results.results = await model
           // .find({})
-          .find({ $text: { $search: query } })
+          .find(
+            { $text: { $search: query } },
+            { score: { $meta: "textScore" } }
+          )
           .limit(limit)
           .skip(startIndex)
+          .sort({ score: { $meta: "textScore" } })
           .exec();
         res.paginatedResults = results;
         next();
