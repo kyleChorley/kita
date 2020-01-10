@@ -15,7 +15,7 @@ function HooksMap() {
     height: "90vh",
     zoom: 12
   });
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(null);
 
   const points = data.map(kitas => ({
     type: "Feature",
@@ -76,8 +76,8 @@ function HooksMap() {
       {...viewport}
       maxZoom={20}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-      onViewportChange={newViewport => {
-        setViewport({ ...newViewport });
+      onViewportChange={viewport => {
+        setViewport({ ...viewport });
       }}
       ref={mapRef}
       className="cardMap-container"
@@ -130,18 +130,24 @@ function HooksMap() {
         }
 
         return (
-          <Marker
-            key={cluster.properties.kitaId}
-            latitude={latitude}
-            longitude={longitude}
-          >
-            <div
-              className="kita-marker"
-              onClick={e => {
-                e.preventDefault();
-                setShowPopup(true);
-              }}
+          <>
+            <Marker
+              key={cluster.kitaId}
+              latitude={latitude}
+              longitude={longitude}
             >
+              {/* {cluster.geometry.coordinates.map(() => ( */}
+              <div
+                className="kita-marker"
+                onClick={e => {
+                  e.preventDefault();
+                  setShowPopup(cluster);
+                }}
+              ></div>
+              {/* ))} */}
+              {/* <button className="kita-marker"></button> */}
+            </Marker>
+            <>
               {showPopup ? (
                 <Popup
                   latitude={latitude}
@@ -150,15 +156,16 @@ function HooksMap() {
                   dynamicPosition={true}
                   closeButton={true}
                   closeOnClick={true}
-                  onClose={() => setShowPopup(false)}
+                  onClose={() => {
+                    setShowPopup(false);
+                  }}
                 >
-                  YAY! A POPUP
+                  <div>YAY! A POPUP</div>
                   {/* <KitaDetailCard kitaInfo={points.properties} /> */}
                 </Popup>
               ) : null}
-            </div>
-            {/* <button className="kita-marker"></button> */}
-          </Marker>
+            </>
+          </>
         );
       })}
     </ReactMapGL>
