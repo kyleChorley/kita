@@ -118,8 +118,12 @@ function HooksMap(props) {
         }
 
         return (
-          <div key={cluster.kitaId}>
-            <Marker latitude={latitude} longitude={longitude}>
+          <div>
+            <Marker
+              key={cluster.kitaId}
+              latitude={latitude}
+              longitude={longitude}
+            >
               {/* {cluster.geometry.coordinates.map(() => ( */}
               <div
                 className="kita-marker"
