@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactMapGL, { Marker, FlyToInterpolator, Popup } from "react-map-gl";
-// import mapboxgl from "mapbox-gl";
 import useSupercluster from "use-supercluster";
-// import axios from "axios";
 import "../assets/stylesheets/map.css";
-// import KitaDetailCard from "./KitaDetailCard";
 import useKitaSearch from "../useKitaSearch";
+import KitaDetailCard from "./KitaDetailCard";
+
 
 function HooksMap(props) {
   const [page] = useState(1);
@@ -19,30 +18,30 @@ function HooksMap(props) {
     zoom: 9
   });
 
-  // useEffect(() => {
-  //   setKitas([]);
-  // });
+  const [showPopup, setShowPopup] = useState(null);
 
-  // console.log(props);
+  const points = [...new Set([...kitas])].map(kitas => ({
+    type: "Feature",
+    properties: {
+      cluster: false,
+      kitaId: kitas._id,
+      fromAge: kitas.fruehestesAufnahmealterInMonaten,
+      name: kitas.name,
+      address: kitas.adresse,
+      postCode: kitas.postleitzahl,
+      city: kitas.stadt,
+      cityQuarter: kitas.stadt,
+      type: kitas.einrichtungsart,
+      phone: kitas.telefon,
+      mail: kitas.email,
+      owner: kitas.traegerart
+    },
+    geometry: {
+      types: "Point",
+      coordinates: [parseFloat(kitas.long), parseFloat(kitas.lat)]
+    }
+  }));
 
-  const [showPopup, setShowPopup] = useState({ showPopup: true });
-
-  const points = [...new Set([...kitas])].map(kitas =>
-    // console.log(kitas),
-    ({
-      type: "Feature",
-      properties: {
-        cluster: false,
-        kitaId: kitas._id
-      },
-      geometry: {
-        types: "Point",
-        coordinates: [parseFloat(kitas.long), parseFloat(kitas.lat)]
-      }
-    })
-  );
-
-  console.log(new Set([...points]));
 
   const mapRef = useRef();
 
@@ -67,8 +66,8 @@ function HooksMap(props) {
       {...viewport}
       maxZoom={20}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-      onViewportChange={newViewport => {
-        setViewport({ ...newViewport });
+      onViewportChange={viewport => {
+        setViewport({ ...viewport });
       }}
       ref={mapRef}
       className="cardMap-container"
@@ -121,27 +120,43 @@ function HooksMap(props) {
         }
 
         return (
-          <Marker
-            key={cluster.properties.kitaId}
-            latitude={latitude}
-            longitude={longitude}
-          >
-            {showPopup && (
-              <Popup
-                latitude={latitude}
-                longitude={longitude}
-                anchor="bottom"
-                dynamicPosition={true}
-                closeButton={true}
-                closeOnClick={true}
-                onClose={() => setShowPopup({ showPopup: false })}
-              >
-                YAY! A POPUP
-                {/* <KitaDetailCard kitaInfo={kitaInfo} /> */}
-              </Popup>
-            )}
-            <button className="kita-marker"></button>
-          </Marker>
+          <>
+            <Marker
+              key={cluster.kitaId}
+              latitude={latitude}
+              longitude={longitude}
+            >
+              {/* {cluster.geometry.coordinates.map(() => ( */}
+              <div
+                className="kita-marker"
+                onClick={e => {
+                  e.preventDefault();
+                  setShowPopup(cluster);
+                }}
+              ></div>
+              {/* ))} */}
+              {/* <button className="kita-marker"></button> */}
+            </Marker>
+            <>
+              {showPopup ? (
+                <Popup
+                  latitude={latitude}
+                  longitude={longitude}
+                  anchor="bottom"
+                  dynamicPosition={true}
+                  closeButton={true}
+                  closeOnClick={true}
+                  onClose={() => {
+                    setShowPopup(false);
+                  }}
+                >
+                  <div>YAY! A POPUP</div>
+                  {/* <KitaDetailCard kitaInfo={points.properties} /> */}
+                </Popup>
+              ) : null}
+            </>
+          </>
+
         );
       })}
     </ReactMapGL>
