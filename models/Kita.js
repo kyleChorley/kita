@@ -9,7 +9,7 @@ const kitaSchema = new Schema({
   long: Number,
   lat: Number,
   adresse: String,
-  postleitzahl: Number,
+  postleitzahl: String,
   stadt: String,
   viertel: String,
   telefon: String,

@@ -133,4 +133,4 @@ module.exports = app;
 //
 // then type in "use kita"
 //
-// then "db.kitaBerlin.createIndex({name: "text"})"
+// db.kitaBerlin.createIndex({"$**": "text"},{"weights": { name: 3, postleitzahl:2,addresse:2 }}}
