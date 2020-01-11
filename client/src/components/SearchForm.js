@@ -15,6 +15,7 @@ export default function SearchForm(props) {
           value={props.query}
           onChange={props.handleSearch}
           name="search"
+          placeholder="Suchen Sie nach Namen"
           // id="search"
         />
         <FontAwesomeIcon icon={faSearch} className="icon searchButton" />
