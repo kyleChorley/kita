@@ -1,28 +1,44 @@
-import React, { Component } from "react";
-// import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useState } from "react";
 import "./App.css";
-// import ReactMapGL, { Marker } from "react-map-gl";
+import useKitaSearch from "../src/useKitaSearch";
 
 // components
 import Navbar from "./components/Navbar";
-// import Map from "./components/Map";
 import CardList from "./components/CardList";
-// import Map from "./components/Map";
 import HooksMap from "./components/HooksMap";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="main-app">
-        <Navbar />
-        <div className="cardMap-container">
-          <CardList />
-          {/* <Map /> */}
-          <HooksMap />
-        </div>
+function App() {
+  const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(3);
+
+  const { kitas, hasMore, loading, error } = useKitaSearch(query, page, limit);
+
+  const handleSearch = event => {
+    setQuery(event.target.value);
+    setPage(1);
+  };
+
+  return (
+    <div className="main-app">
+      <Navbar />
+      <div className="cardMap-container">
+        <CardList
+          query={query}
+          kitas={kitas}
+          hasMore={hasMore}
+          loading={loading}
+          error={error}
+          setPage={setPage}
+          setQuery={setQuery}
+          setLimit={setLimit}
+          handleSearch={handleSearch}
+        />
+
+        <HooksMap query={query} page={page} />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;

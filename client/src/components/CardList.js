@@ -1,49 +1,32 @@
 import React, { useState, useRef, useCallback } from "react";
 import KitaDetailCard from "./KitaDetailCard";
+import SearchForm from "./SearchForm";
 import useKitaSearch from "../useKitaSearch";
 
 // Style
 import "../assets/stylesheets/cardList.css";
 
-function CardList() {
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const limit = 3;
-
-  const { kitas, hasMore, loading, error } = useKitaSearch(query, page, limit);
-
+function CardList(props) {
   const observer = useRef();
   const lastKitaElementRef = useCallback(
     node => {
-      if (loading) return;
+      if (props.loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) {
-          setPage(prevPage => prevPage + 1);
+        if (entries[0].isIntersecting && props.hasMore) {
+          props.setPage(prevPage => prevPage + 1);
         }
       });
       if (node) observer.current.observe(node);
     },
-    [loading, hasMore]
+    [props.loading, props.hasMore]
   );
-
-  const handleSearch = event => {
-    setQuery(event.target.value);
-    setPage(1);
-  };
 
   return (
     <div className="card-list">
-      <label htmlFor="search">Search me:</label>
-      <input
-        type="text"
-        value={query}
-        onChange={handleSearch}
-        name="search"
-        id="search"
-      />
+      <SearchForm handleSearch={props.handleSearch} query={props.query} />
 
-      {kitas.map((kita, index) => {
+      {props.kitas.map((kita, index) => {
         const kitaInfo = {
           fromAge: kita.fruehestesAufnahmealterInMonaten,
           name: kita.name,
@@ -57,7 +40,7 @@ function CardList() {
           owner: kita.traegerart
         };
 
-        if (kitas.length === index + 1) {
+        if (props.kitas.length === index + 1) {
           return (
             <div key={kita._id} ref={lastKitaElementRef}>
               <KitaDetailCard kitaInfo={kitaInfo} />
@@ -71,8 +54,8 @@ function CardList() {
           );
         }
       })}
-      {loading && <div>Loading...</div>}
-      {error && <div>Error! Please try again!</div>}
+      {props.loading && <div>Loading...</div>}
+      {props.error && <div>Error! Please try again!</div>}
     </div>
   );
 }

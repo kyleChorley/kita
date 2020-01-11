@@ -1,23 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactMapGL, { Marker, FlyToInterpolator, Popup } from "react-map-gl";
-// import mapboxgl from "mapbox-gl";
 import useSupercluster from "use-supercluster";
-import axios from "axios";
 import "../assets/stylesheets/map.css";
+import useKitaSearch from "../useKitaSearch";
 import KitaDetailCard from "./KitaDetailCard";
 
-function HooksMap() {
-  const [data, setData] = useState([]);
+
+function HooksMap(props) {
+  const [page] = useState(1);
+  const [limit] = useState(0);
+  const { kitas } = useKitaSearch(props.query, page, limit);
   const [viewport, setViewport] = useState({
     latitude: 52.518365,
     longitude: 13.341646,
     width: "70%",
     height: "90vh",
-    zoom: 12
+    zoom: 9
   });
+
   const [showPopup, setShowPopup] = useState(null);
 
-  const points = data.map(kitas => ({
+  const points = [...new Set([...kitas])].map(kitas => ({
     type: "Feature",
     properties: {
       cluster: false,
@@ -39,19 +42,8 @@ function HooksMap() {
     }
   }));
 
-  const mapRef = useRef();
 
-  useEffect(() => {
-    axios
-      .get("/api/kita")
-      .then(res => {
-        console.log("We have our data", res.data.results);
-        setData(res.data.results);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
+  const mapRef = useRef();
 
   const bounds = mapRef.current
     ? mapRef.current
@@ -67,8 +59,6 @@ function HooksMap() {
     zoom: viewport.zoom,
     options: { radius: 45, maxZoom: 20 }
   });
-
-  // console.log(points);
 
   return (
     <ReactMapGL
@@ -166,6 +156,7 @@ function HooksMap() {
               ) : null}
             </>
           </>
+
         );
       })}
     </ReactMapGL>
