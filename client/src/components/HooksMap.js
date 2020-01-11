@@ -5,7 +5,6 @@ import "../assets/stylesheets/map.css";
 import useKitaSearch from "../useKitaSearch";
 import KitaDetailCard from "./KitaDetailCard";
 
-
 function HooksMap(props) {
   const [page] = useState(1);
   const [limit] = useState(0);
@@ -41,7 +40,6 @@ function HooksMap(props) {
       coordinates: [parseFloat(kitas.long), parseFloat(kitas.lat)]
     }
   }));
-
 
   const mapRef = useRef();
 
@@ -120,12 +118,8 @@ function HooksMap(props) {
         }
 
         return (
-          <>
-            <Marker
-              key={cluster.kitaId}
-              latitude={latitude}
-              longitude={longitude}
-            >
+          <div key={cluster.kitaId}>
+            <Marker latitude={latitude} longitude={longitude}>
               {/* {cluster.geometry.coordinates.map(() => ( */}
               <div
                 className="kita-marker"
@@ -137,7 +131,7 @@ function HooksMap(props) {
               {/* ))} */}
               {/* <button className="kita-marker"></button> */}
             </Marker>
-            <>
+            <div>
               {showPopup ? (
                 <Popup
                   latitude={latitude}
@@ -154,9 +148,8 @@ function HooksMap(props) {
                   {/* <KitaDetailCard kitaInfo={points.properties} /> */}
                 </Popup>
               ) : null}
-            </>
-          </>
-
+            </div>
+          </div>
         );
       })}
     </ReactMapGL>
