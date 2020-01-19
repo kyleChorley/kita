@@ -7,7 +7,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default function SearchForm(props) {
   return (
-    <div className="wrap">
+    <div>
       <div id="search">
         <input
           className="searchTerm"
@@ -20,6 +20,7 @@ export default function SearchForm(props) {
         />
         <FontAwesomeIcon icon={faSearch} className="icon searchButton" />
       </div>
+      <button>erweitert</button>
     </div>
   );
 }
