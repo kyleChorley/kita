@@ -6,8 +6,6 @@
   box-shadow: 2px 2px 4px rgb(145, 145, 145);
   position: relative;
   display: flex;
-  width: 30%;
-  min-width: 300px;
   background-color: white;
 }
 

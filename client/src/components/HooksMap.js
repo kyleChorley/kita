@@ -57,6 +57,7 @@ function HooksMap(props) {
     zoom: viewport.zoom,
     options: { radius: 45, maxZoom: 20 }
   });
+  console.log(clusters);
 
   return (
     <ReactMapGL
@@ -71,6 +72,7 @@ function HooksMap(props) {
       className="cardMap-container"
     >
       {clusters.map(cluster => {
+        // console.log(cluster);
         // every cluster point has coordinates
         const [longitude, latitude] = cluster.geometry.coordinates;
         // the point may be either a cluster or a crime point
@@ -138,8 +140,8 @@ function HooksMap(props) {
             <div>
               {showPopup ? (
                 <Popup
-                  latitude={latitude}
-                  longitude={longitude}
+                  latitude={showPopup.geometry.coordinates[1]}
+                  longitude={showPopup.geometry.coordinates[0]}
                   anchor="bottom"
                   dynamicPosition={true}
                   closeButton={true}
@@ -148,7 +150,7 @@ function HooksMap(props) {
                     setShowPopup(false);
                   }}
                 >
-                  <div>YAY! A POPUP</div>
+                  <div>{cluster.kitaId}</div>
                   {/* <KitaDetailCard kitaInfo={points.properties} /> */}
                 </Popup>
               ) : null}

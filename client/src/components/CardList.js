@@ -1,7 +1,6 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useRef, useCallback } from "react";
 import KitaDetailCard from "./KitaDetailCard";
 import SearchForm from "./SearchForm";
-import useKitaSearch from "../useKitaSearch";
 
 // Style
 import "../assets/stylesheets/cardList.css";
