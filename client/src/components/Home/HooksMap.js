@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactMapGL, { Marker, FlyToInterpolator, Popup } from "react-map-gl";
 import useSupercluster from "use-supercluster";
-import "../assets/stylesheets/map.css";
-import useKitaSearch from "../useKitaSearch";
-import KitaDetailCard from "./KitaDetailCard";
+import "../../assets/stylesheets/map.css";
+import useKitaSearch from "../../useKitaSearch";
+import KitaDetailCard from "../KitaDetailCard";
 
 function HooksMap(props) {
   const [page] = useState(1);
