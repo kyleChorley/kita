@@ -79,6 +79,9 @@ app.locals.title = "Kita";
 const index = require("./routes/index");
 app.use("/", index);
 
+const auth = require("./routes/auth/auth");
+app.use("/auth", auth);
+
 app.get("/api/kita", paginatedResults(Kita), (req, res) => {
   res.json(res.paginatedResults);
 });

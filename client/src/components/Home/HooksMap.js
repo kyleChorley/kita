@@ -57,7 +57,6 @@ function HooksMap(props) {
     zoom: viewport.zoom,
     options: { radius: 45, maxZoom: 20 }
   });
-  console.log(clusters);
 
   return (
     <ReactMapGL

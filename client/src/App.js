@@ -6,6 +6,7 @@ import { Switch, Route } from "react-router-dom";
 // components
 import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
+import SignUp from "./components/auth/SignUp";
 
 function App(props) {
   const [query, setQuery] = useState("");
@@ -23,6 +24,9 @@ function App(props) {
     <div className="main-app">
       <Navbar />
       <Switch>
+        <Route path="/auth">
+          <SignUp />
+        </Route>
         <Route
           path="/"
           render={props => (
@@ -37,6 +41,7 @@ function App(props) {
               setQuery={setQuery}
               setLimit={setLimit}
               handleSearch={handleSearch}
+              exact
             />
           )}
         />
