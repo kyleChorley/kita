@@ -9,6 +9,10 @@ const logger = require("morgan");
 const path = require("path");
 const Kita = require("./models/Kita");
 
+// authentication
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/kita", {
     useNewUrlParser: true,
@@ -51,11 +55,32 @@ app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
+// local auth
+passport.use(
+  new LocalStrategy(function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false);
+      }
+      if (!user.verifyPassword(password)) {
+        return done(null, false);
+      }
+      return done(null, user);
+    });
+  })
+);
+
 // default value for title local
 app.locals.title = "Kita";
 
 const index = require("./routes/index");
 app.use("/", index);
+
+const auth = require("./routes/auth/auth");
+app.use("/auth", auth);
 
 app.get("/api/kita", paginatedResults(Kita), (req, res) => {
   res.json(res.paginatedResults);

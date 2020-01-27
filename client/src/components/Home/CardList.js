@@ -1,9 +1,9 @@
 import React, { useRef, useCallback } from "react";
-import KitaDetailCard from "./KitaDetailCard";
-import SearchForm from "./SearchForm";
+import KitaDetailCard from "../KitaDetailCard";
+import SearchForm from "../SearchForm";
 
 // Style
-import "../assets/stylesheets/cardList.css";
+import "../../assets/stylesheets/cardList.css";
 
 function CardList(props) {
   const observer = useRef();

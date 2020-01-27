@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./App.css";
 import useKitaSearch from "../src/useKitaSearch";
+import { Switch, Route } from "react-router-dom";
 
 // components
 import Navbar from "./components/Navbar";
-import CardList from "./components/CardList";
-import HooksMap from "./components/HooksMap";
+import Home from "./components/Home/Home";
+import SignUp from "./components/auth/SignUp";
 
-function App() {
+function App(props) {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(3);
@@ -22,21 +23,29 @@ function App() {
   return (
     <div className="main-app">
       <Navbar />
-      <div className="cardMap-container">
-        <CardList
-          query={query}
-          kitas={kitas}
-          hasMore={hasMore}
-          loading={loading}
-          error={error}
-          setPage={setPage}
-          setQuery={setQuery}
-          setLimit={setLimit}
-          handleSearch={handleSearch}
+      <Switch>
+        <Route path="/auth">
+          <SignUp />
+        </Route>
+        <Route
+          path="/"
+          render={props => (
+            <Home
+              {...props}
+              query={query}
+              kitas={kitas}
+              hasMore={hasMore}
+              loading={loading}
+              error={error}
+              setPage={setPage}
+              setQuery={setQuery}
+              setLimit={setLimit}
+              handleSearch={handleSearch}
+              exact
+            />
+          )}
         />
-
-        <HooksMap query={query} page={page} />
-      </div>
+      </Switch>
     </div>
   );
 }
