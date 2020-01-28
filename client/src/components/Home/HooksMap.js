@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import ReactMapGL, { Marker, FlyToInterpolator, Popup } from "react-map-gl";
 import useSupercluster from "use-supercluster";
-import "../assets/stylesheets/map.css";
-import useKitaSearch from "../useKitaSearch";
-// import KitaDetailCard from "./KitaDetailCard";
+import "../../assets/stylesheets/map.css";
+import useKitaSearch from "../../useKitaSearch";
+import KitaDetailCard from "../KitaDetailCard";
 
 function HooksMap(props) {
   const [page] = useState(1);
@@ -71,6 +71,7 @@ function HooksMap(props) {
       className="cardMap-container"
     >
       {clusters.map(cluster => {
+        // console.log(cluster);
         // every cluster point has coordinates
         const [longitude, latitude] = cluster.geometry.coordinates;
         // the point may be either a cluster or a crime point
@@ -137,7 +138,6 @@ function HooksMap(props) {
             <div>
               {showPopup ? (
                 <Popup
-                  key={cluster.kitaId}
                   latitude={showPopup.geometry.coordinates[1]}
                   longitude={showPopup.geometry.coordinates[0]}
                   anchor="bottom"
@@ -148,8 +148,7 @@ function HooksMap(props) {
                     setShowPopup(null);
                   }}
                 >
-                  <div>YAY! A GOD DAMN POPUP!!!</div>
-                  <div>JUST ONE OF THEM!</div>
+                  <div>{cluster.kitaId}</div>
                   {/* <KitaDetailCard kitaInfo={points.properties} /> */}
                 </Popup>
               ) : null}
