@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import ReactMapGL, { Marker, FlyToInterpolator, Popup } from "react-map-gl";
 import useSupercluster from "use-supercluster";
 import "../assets/stylesheets/map.css";
 import useKitaSearch from "../useKitaSearch";
-import KitaDetailCard from "./KitaDetailCard";
+// import KitaDetailCard from "./KitaDetailCard";
 
 function HooksMap(props) {
   const [page] = useState(1);
@@ -118,8 +118,12 @@ function HooksMap(props) {
         }
 
         return (
-          <div key={cluster.kitaId}>
-            <Marker latitude={latitude} longitude={longitude}>
+          <div>
+            <Marker
+              key={cluster.kitaId}
+              latitude={latitude}
+              longitude={longitude}
+            >
               {/* {cluster.geometry.coordinates.map(() => ( */}
               <div
                 className="kita-marker"
@@ -129,22 +133,23 @@ function HooksMap(props) {
                 }}
               ></div>
               {/* ))} */}
-              {/* <button className="kita-marker"></button> */}
             </Marker>
             <div>
               {showPopup ? (
                 <Popup
-                  latitude={latitude}
-                  longitude={longitude}
+                  key={cluster.kitaId}
+                  latitude={showPopup.geometry.coordinates[1]}
+                  longitude={showPopup.geometry.coordinates[0]}
                   anchor="bottom"
                   dynamicPosition={true}
                   closeButton={true}
                   closeOnClick={true}
                   onClose={() => {
-                    setShowPopup(false);
+                    setShowPopup(null);
                   }}
                 >
-                  <div>YAY! A POPUP</div>
+                  <div>YAY! A GOD DAMN POPUP!!!</div>
+                  <div>JUST ONE OF THEM!</div>
                   {/* <KitaDetailCard kitaInfo={points.properties} /> */}
                 </Popup>
               ) : null}
