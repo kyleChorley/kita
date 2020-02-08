@@ -20,8 +20,9 @@
   margin: 0;
 }
 
-span {
+.card-header-span {
   font-size: 0.8em;
+  justify-content: space-between;
 }
 
 .icon {

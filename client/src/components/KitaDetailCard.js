@@ -30,8 +30,11 @@ function KitaDetailCard(props) {
         <h4>{name}</h4>
         <p>ab {fromAge} M.</p>
       </div>
-      <span>
+      <span className="card-header-span flex">
         {address}, {postCode} {city}
+        <div className="btn">
+          <button>Save</button>
+        </div>
       </span>
       <hr />
       <p>
