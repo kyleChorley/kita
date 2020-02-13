@@ -1,6 +1,7 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, useState } from "react";
 import KitaDetailCard from "../KitaDetailCard";
 import SearchForm from "../SearchForm";
+import axios from "axios";
 
 // Style
 import "../../assets/stylesheets/cardList.css";
@@ -21,12 +22,46 @@ function CardList(props) {
     [props.loading, props.hasMore]
   );
 
+  const [favorites, setFavorites] = useState([]);
+
+  const clickHandle = kita => {
+    console.log(kita);
+    const kitaId = kita._id;
+    // REMOVE PRODUCT FROM FAVORITES
+    // IF -> IF PRODUCT IS ALREADY IN THE FAVORITES
+    if (favorites.includes(kitaId)) {
+      const shallow = [...favorites];
+      const indexOfKita = shallow.indexOf(kitaId);
+      shallow.splice(indexOfKita, 1);
+      setFavorites({ shallow }, () => {
+        // PUT -> REMOVE KITA FROM USER FAVORITES ARRAY AND DELETE ALLTOGETHER
+        axios.put(`/kitas/favorite`, kita).then(response => {
+          console.log(response);
+        });
+      });
+      // ADD KITA TO FAVORITES
+      // ELSE -> PRODUCT TO BE ADDED
+    } else {
+      setFavorites([...favorites, kita], () => {
+        console.log(favorites);
+        //POST -> CREATING A PRODUCT
+        axios.post("/kitas/favorite", kita).then(response => {
+          console.log(response);
+        });
+      });
+    }
+  };
+
+  console.log(props.kitas);
+
   return (
     <div className="card-list">
       <SearchForm handleSearch={props.handleSearch} query={props.query} />
 
       {props.kitas.map((kita, index) => {
+        console.log(kita);
         const kitaInfo = {
+          kitaId: kita._id,
           fromAge: kita.fruehestesAufnahmealterInMonaten,
           name: kita.name,
           address: kita.adresse,
@@ -42,13 +77,25 @@ function CardList(props) {
         if (props.kitas.length === index + 1) {
           return (
             <div key={kita._id} ref={lastKitaElementRef}>
-              <KitaDetailCard kitaInfo={kitaInfo} />
+              <KitaDetailCard
+                kitaInfo={kitaInfo}
+                user={props.user}
+                kita={kita}
+                clickHandle={clickHandle}
+                favorites={favorites}
+              />
             </div>
           );
         } else {
           return (
             <div key={kita._id}>
-              <KitaDetailCard kitaInfo={kitaInfo} />
+              <KitaDetailCard
+                kitaInfo={kitaInfo}
+                user={props.user}
+                kita={kita}
+                clickHandle={clickHandle}
+                favorites={favorites}
+              />
             </div>
           );
         }

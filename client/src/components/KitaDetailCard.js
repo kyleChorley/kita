@@ -1,4 +1,6 @@
 import React from "react";
+import StarYellow from "../assets/images/starYellow.png";
+import StarBlack from "../assets/images/starBlack.png";
 
 // Style
 import "../assets/stylesheets/kitaDetailCard.css";
@@ -11,7 +13,29 @@ import {
 function KitaDetailCard(props) {
   // console.log("Card props:", props);
 
+  const { kita, clickHandle, user, favorites } = props;
+  console.log(kita);
+
+  const starColor = (
+    <>
+      {user ? (
+        favorites.includes(kita._id) === false ? (
+          <img className="product-star" src={StarBlack} alt="" />
+        ) : (
+          <img className="product-star" src={StarYellow} alt="" />
+        )
+      ) : null}
+    </>
+  );
+
+  const alreadyFavorite = (
+    <>
+      <img className="product-star" src={StarYellow} alt="" />
+    </>
+  );
+
   const {
+    kitaId,
     fromAge,
     name,
     address,
@@ -24,6 +48,8 @@ function KitaDetailCard(props) {
     owner
   } = props.kitaInfo;
 
+  console.log(props.relevant);
+
   return (
     <div className="card">
       <div className="card-header flex">
@@ -33,7 +59,9 @@ function KitaDetailCard(props) {
       <span className="card-header-span flex">
         {address}, {postCode} {city}
         <div className="btn">
-          <button>Save</button>
+          <div onClick={() => clickHandle(kita)}>
+            {props.relevant ? alreadyFavorite : starColor}
+          </div>
         </div>
       </span>
       <hr />

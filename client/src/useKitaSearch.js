@@ -7,6 +7,8 @@ export default function useKitaSearch(query, page, limit) {
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(false);
 
+  console.log(kitas);
+
   // console.log("useKitaSearch:", query);
   useEffect(() => {
     setKitas([]);
