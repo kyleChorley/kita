@@ -14,7 +14,7 @@ router.get("/myfavorites", (req, res) => {
     });
 });
 
-router.post("/favorite", (req, res) => {
+router.post("/favorites", (req, res) => {
   console.log(req.body);
   // const { title, image, price, num_reviews, stars, kita_id } = req.body;
   Kita.create({ ...req.body }).then(
@@ -34,7 +34,7 @@ router.post("/favorite", (req, res) => {
   );
 });
 
-router.put("/favorite", (req, res) => {
+router.put("/favorites", (req, res) => {
   const { kita_id } = req.body;
   // INFO FROM  FRONT END. ONLY RELEVANT INFORMATION IS AMAZON ID
   User.findById(req.user._id)
@@ -55,9 +55,9 @@ router.put("/favorite", (req, res) => {
       ).then(updatedUser => {
         // MESSAGE OF SUCCESS SENT TO USER
         res.json({ message: "Kita Removed From Favorites" });
-        // kita NO LONGER RELEVANT ENOUGH TO KEEP IN DATABASE. TIME TO DELETE
+        // KITA NO LONGER RELEVANT ENOUGH TO KEEP IN DATABASE. TIME TO DELETE
         Kita.findByIdAndDelete(kitaToDelete._id).then(deletedSuccess => {
-          // HERE IT SINGLAS THAT SAID KITA WAS DELETED
+          // HERE IT SAYS THAT SAID KITA WAS DELETED
           console.log("deletedSuccess");
         });
       });

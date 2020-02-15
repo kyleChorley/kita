@@ -41,3 +41,9 @@ hr {
   font-size: 0.825em;
   margin: 0.2em 0;
 }
+
+.favorite-star {
+  display: flex;
+  justify-content: flex-start;
+  height: 20px;
+}

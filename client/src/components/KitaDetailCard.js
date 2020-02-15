@@ -20,9 +20,9 @@ function KitaDetailCard(props) {
     <>
       {user ? (
         favorites.includes(kita._id) === false ? (
-          <img className="product-star" src={StarBlack} alt="" />
+          <img className="favorite-star" src={StarBlack} alt="" />
         ) : (
-          <img className="product-star" src={StarYellow} alt="" />
+          <img className="favorite-star" src={StarYellow} alt="" />
         )
       ) : null}
     </>
@@ -30,7 +30,7 @@ function KitaDetailCard(props) {
 
   const alreadyFavorite = (
     <>
-      <img className="product-star" src={StarYellow} alt="" />
+      <img className="favorite-star" src={StarYellow} alt="" />
     </>
   );
 
@@ -48,7 +48,7 @@ function KitaDetailCard(props) {
     owner
   } = props.kitaInfo;
 
-  console.log(props.relevant);
+  console.log(kitaId);
 
   return (
     <div className="card">

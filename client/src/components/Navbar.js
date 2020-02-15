@@ -12,6 +12,9 @@ export default function navbar() {
           <NavLink to="/">Home</NavLink>
         </li>
         <li>
+          <NavLink to="/favorite">Favorites</NavLink>
+        </li>
+        <li>
           <NavLink to="/auth">Log In</NavLink>
         </li>
       </ul>
