@@ -6,7 +6,7 @@ import { Switch, Route } from "react-router-dom";
 // components
 import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
-import SignUp from "./components/auth/SignUp";
+import SignUp from "./components/Auth/SignUp";
 import Favorites from "./components/Favorites";
 
 function App(props) {
@@ -14,6 +14,7 @@ function App(props) {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(3);
   const [user, setUser] = useState();
+  // const [loggedinUser, setLoggedinUser] = useState((loggedinUser: null));
 
   const { kitas, hasMore, loading, error } = useKitaSearch(query, page, limit);
 
@@ -24,8 +25,11 @@ function App(props) {
 
   return (
     <div className="main-app">
-      <Navbar />
-      <div>
+      <Navbar userInSession={user} />
+      <Switch>
+        <Route path="/auth">
+          <SignUp {...props} setUser={setUser} />
+        </Route>
         <Route
           exact
           path="/favorites"
@@ -33,11 +37,6 @@ function App(props) {
             <Favorites user={user} setUser={setUser} {...props} />
           )}
         />
-      </div>
-      <Switch>
-        <Route path="/auth">
-          <SignUp />
-        </Route>
         <Route
           path="/"
           render={props => (

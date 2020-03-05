@@ -8,10 +8,14 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
 const Kita = require("./models/Kita");
+// const MongoStore = require("connect-mongo")(session);
 
 // authentication
 const passport = require("passport");
+const session = require("express-session");
 const LocalStrategy = require("passport-local").Strategy;
+require("./passport/index");
+const flash = require("connect-flash");
 
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/kita", {
@@ -55,32 +59,32 @@ app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
-// local auth
-passport.use(
-  new LocalStrategy(function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false);
-      }
-      if (!user.verifyPassword(password)) {
-        return done(null, false);
-      }
-      return done(null, user);
-    });
+// default value for title local
+app.locals.title = "Kita";
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true
+    // store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
 
-// default value for title local
-app.locals.title = "Kita";
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash());
+require("./passport")(app);
 
 const index = require("./routes/index");
 app.use("/", index);
 
 const auth = require("./routes/auth/auth");
 app.use("/auth", auth);
+
+const authRoutes = require("./routes/authRoutes");
+app.use("/api", authRoutes);
 
 app.get("/api/kita", paginatedResults(Kita), (req, res) => {
   res.json(res.paginatedResults);

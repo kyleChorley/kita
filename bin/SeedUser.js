@@ -2,16 +2,19 @@ const user = [
   {
     username: "User",
     password: "User",
+    kitas: [],
     userType: "admin"
   },
   {
     username: "Parent",
     password: "Parent",
+    kitas: [],
     userType: "parentUser"
   },
   {
     username: "Kita",
     password: "Kita",
+    kitas: [],
     userType: "kita"
   }
 ];
