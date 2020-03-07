@@ -42,9 +42,8 @@ class Favorites extends Component {
       <div className="card-list">
         {kitas.length ? (
           kitas.map(post => {
-            {
-              console.log(post);
-            }
+            console.log(post);
+
             return (
               <KitaDetailCard
                 user={this.props.user}
