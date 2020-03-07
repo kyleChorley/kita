@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/stylesheets/navbar.css";
 import { logout } from "./Auth/AuthAxios";
@@ -12,8 +12,6 @@ const Navbar = props => {
     logout();
     props.updateUser(null);
   };
-
-  console.log(props);
 
   return (
     <div className="nav flex center">

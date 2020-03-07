@@ -13,7 +13,7 @@ const Kita = require("./models/Kita");
 // authentication
 const passport = require("passport");
 const session = require("express-session");
-const LocalStrategy = require("passport-local").Strategy;
+// const LocalStrategy = require("passport-local").Strategy;
 require("./passport/index");
 const flash = require("connect-flash");
 
