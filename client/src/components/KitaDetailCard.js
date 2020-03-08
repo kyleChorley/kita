@@ -10,11 +10,11 @@ import {
   faEnvelopeSquare
 } from "@fortawesome/free-solid-svg-icons";
 
-function KitaDetailCard(props) {
-  // console.log("Card props:", props);
+const KitaDetailCard = props => {
+  console.log("Card props:", props);
 
   const { kita, clickHandle, user, favorites } = props;
-  console.log(kita);
+  console.log(user);
 
   const starColor = (
     <>
@@ -48,7 +48,7 @@ function KitaDetailCard(props) {
     owner
   } = props.kitaInfo;
 
-  console.log(kitaId);
+  console.log(props);
 
   return (
     <div className="card">
@@ -84,6 +84,6 @@ function KitaDetailCard(props) {
       </span>
     </div>
   );
-}
+};
 
 export default KitaDetailCard;

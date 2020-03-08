@@ -8,11 +8,11 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
 const Kita = require("./models/Kita");
-// const MongoStore = require("connect-mongo")(session);
 
 // authentication
 const passport = require("passport");
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 // const LocalStrategy = require("passport-local").Strategy;
 require("./passport/index");
 const flash = require("connect-flash");
@@ -66,8 +66,9 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true
-    // store: new MongoStore({ mongooseConnection: mongoose.connection })
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
 

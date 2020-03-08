@@ -70,7 +70,7 @@ authRoutes.post("/signup", (req, res, next) => {
 
 // LOGIN
 authRoutes.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, theUser, failureDetails) => {
+  passport.authenticate("local", (err, user, failureDetails) => {
     if (err) {
       res
         .status(500)
@@ -78,7 +78,7 @@ authRoutes.post("/login", (req, res, next) => {
       return;
     }
 
-    if (!theUser) {
+    if (!user) {
       // "failureDetails" contains the error messages
       // from our logic in "LocalStrategy" { message: '...' }.
       res.status(401).json(failureDetails);
@@ -86,20 +86,20 @@ authRoutes.post("/login", (req, res, next) => {
     }
 
     // save user in session
-    req.login(theUser, err => {
+    req.login(user, err => {
       if (err) {
         res.status(500).json({ message: "Session save went bad." });
         return;
       }
 
       // We are now logged in (that's why we can also send req.user)
-      res.status(200).json(theUser);
+      res.status(200).json(user);
     });
   })(req, res, next);
 });
 
 // LOGOUT
-authRoutes.post("/logout", (req, res, next) => {
+authRoutes.delete("/logout", (req, res, next) => {
   // req.logout() is defined by passport
   req.logout();
   res.status(200).json({ message: "Log out success!" });

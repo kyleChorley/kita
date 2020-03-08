@@ -3,12 +3,13 @@ import KitaDetailCard from "../components/KitaDetailCard";
 import axios from "axios";
 
 class Favorites extends Component {
-  state = { favorites: null };
+  state = { favorites: [] };
 
   getData = () => {
-    axios.get("/kitas/myfavorites").then(response => {
+    axios.get("/favorites").then(response => {
+      console.log(response);
       this.props.setUser(response.data);
-      this.setState({ favorites: response.data.kitas }, () => {});
+      this.setState({ favorites: response.data.user.kitas }, () => {});
     });
   };
 
@@ -55,7 +56,7 @@ class Favorites extends Component {
             );
           })
         ) : (
-          <></>
+          <>No Favorites Yet!!!</>
         )}
       </div>
     );

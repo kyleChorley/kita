@@ -6,7 +6,7 @@ import axios from "axios";
 // Style
 import "../../assets/stylesheets/cardList.css";
 
-function CardList(props) {
+const CardList = props => {
   const observer = useRef();
   const lastKitaElementRef = useCallback(
     node => {
@@ -91,7 +91,7 @@ function CardList(props) {
             <div key={kita._id}>
               <KitaDetailCard
                 kitaInfo={kitaInfo}
-                user={props.user}
+                // user={props.user}
                 kita={kita}
                 clickHandle={clickHandle}
                 favorites={favorites}
@@ -104,6 +104,6 @@ function CardList(props) {
       {props.error && <div>Error! Please try again!</div>}
     </div>
   );
-}
+};
 
 export default CardList;

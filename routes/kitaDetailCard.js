@@ -5,7 +5,7 @@ const axios = require("axios");
 const Kita = require("../models/Kita");
 const User = require("../models/User");
 
-router.get("/myfavorites", (req, res) => {
+router.get("/favorites", (req, res) => {
   User.findById(req.user._id)
     .populate("kitas")
     .then(user => {

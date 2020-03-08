@@ -17,7 +17,7 @@ const App = props => {
   const [user, setUser] = useState(props.loggedInUser);
   // const [loggedinUser, setLoggedinUser] = useState(null);
 
-  console.log(user);
+  console.log(props);
 
   const { kitas, hasMore, loading, error } = useKitaSearch(query, page, limit);
 
@@ -26,37 +26,22 @@ const App = props => {
     setPage(1);
   };
 
-  const updateUser = user => {
-    setUser({
-      user: user
-    });
-  };
-
   return (
     <div className="main-app">
       <Navbar {...props} updateUser={setUser} user={user} />
       <Switch>
         <Route
           path="/auth"
-          render={props => (
-            <SignUp
-              {...props}
-              setUser={setUser}
-              user={user}
-              setUser={setUser}
-            />
-          )}
+          render={props => <SignUp {...props} setUser={setUser} user={user} />}
         />
         <Route
           path="/login"
-          render={props => (
-            <Login {...props} setUser={setUser} user={user} setUser={setUser} />
-          )}
+          render={props => <Login {...props} user={user} setUser={setUser} />}
         />
         <Route
           path="/favorite"
           render={props => (
-            <Favorites user={user} setUser={setUser} {...props} />
+            <Favorites {...props} user={user} setUser={setUser} />
           )}
         />
         <Route

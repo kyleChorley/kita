@@ -45,5 +45,5 @@ hr {
 .favorite-star {
   display: flex;
   justify-content: flex-start;
-  height: 20px;
+  height: 10px;
 }
