@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
-//const Project = require("../models/Project");
 const axios = require("axios");
 const Kita = require("../models/Kita");
 const User = require("../models/User");
 
-router.get("/favorites", (req, res) => {
+router.get("/myfavorites", (req, res) => {
   User.findById(req.user._id)
     .populate("kitas")
     .then(user => {
@@ -14,7 +13,7 @@ router.get("/favorites", (req, res) => {
     });
 });
 
-router.post("/favorites", (req, res) => {
+router.post("/favorite", (req, res) => {
   console.log(req.body);
   // const { title, image, price, num_reviews, stars, kita_id } = req.body;
   Kita.create({ ...req.body }).then(
@@ -34,7 +33,7 @@ router.post("/favorites", (req, res) => {
   );
 });
 
-router.put("/favorites", (req, res) => {
+router.put("/favorite", (req, res) => {
   const { kita_id } = req.body;
   // INFO FROM  FRONT END. ONLY RELEVANT INFORMATION IS AMAZON ID
   User.findById(req.user._id)

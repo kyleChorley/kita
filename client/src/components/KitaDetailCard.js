@@ -14,7 +14,7 @@ const KitaDetailCard = props => {
   console.log("Card props:", props);
 
   const { kita, clickHandle, user, favorites } = props;
-  console.log(user);
+  console.log(favorites);
 
   const starColor = (
     <>

@@ -3,13 +3,13 @@ import KitaDetailCard from "../components/KitaDetailCard";
 import axios from "axios";
 
 class Favorites extends Component {
-  state = { favorites: [] };
+  state = { favorites: null };
 
   getData = () => {
-    axios.get("/favorites").then(response => {
+    axios.get("/kitaDetailCard/myfavorites").then(response => {
       console.log(response);
       this.props.setUser(response.data);
-      this.setState({ favorites: response.data.user.kitas }, () => {});
+      this.setState({ favorites: response.data.kitas }, () => {});
     });
   };
 
@@ -19,7 +19,7 @@ class Favorites extends Component {
 
   clickHandle = kita => {
     console.log(kita);
-    const daycare = kita._id;
+    const daycare = kita.kita_id;
     const favorites = this.state.favorites.map(el => el._id);
     if (favorites.includes(daycare)) {
       const shallow = [...favorites];
@@ -27,7 +27,7 @@ class Favorites extends Component {
       shallow.splice(indexOfKita, 1);
       this.setState({ favorites: shallow }, () => {
         // PUT -> REMOVE KITA FROM USER FAVORITES ARRAY AND DELETE ALLTOGETHER
-        axios.put(`/kitas/favorite`, kita).then(response => {
+        axios.put(`/kitaDetailCard/favorite`, kita).then(response => {
           this.getData();
         });
       });
