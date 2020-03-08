@@ -58,6 +58,7 @@ const App = props => {
               setQuery={setQuery}
               setLimit={setLimit}
               handleSearch={handleSearch}
+              user={user}
               exact
             />
           )}

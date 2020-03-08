@@ -37,7 +37,7 @@ class Favorites extends Component {
   };
 
   render() {
-    console.log(this.props);
+    console.log(this.props.user);
     const { kitas } = this.props.user;
     return (
       <div className="card-list">

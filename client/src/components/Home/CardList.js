@@ -52,7 +52,7 @@ const CardList = props => {
     }
   };
 
-  console.log(props.kitas);
+  console.log(props);
 
   return (
     <div className="card-list">
@@ -91,7 +91,7 @@ const CardList = props => {
             <div key={kita._id}>
               <KitaDetailCard
                 kitaInfo={kitaInfo}
-                // user={props.user}
+                user={props.user}
                 kita={kita}
                 clickHandle={clickHandle}
                 favorites={favorites}

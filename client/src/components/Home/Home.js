@@ -15,7 +15,8 @@ export default function Home(props) {
     setQuery,
     setLimit,
     handleSearch,
-    page
+    page,
+    user
   } = props;
 
   return (
@@ -30,6 +31,7 @@ export default function Home(props) {
         setQuery={setQuery}
         setLimit={setLimit}
         handleSearch={handleSearch}
+        user={user}
       />
       <HooksMap query={query} page={page} />
     </div>
