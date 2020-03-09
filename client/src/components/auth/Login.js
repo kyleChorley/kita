@@ -38,6 +38,7 @@ class Login extends Component {
         this.props.history.push("/");
       }
     });
+    console.log("ERROR", this.state.error);
   };
 
   componentDidMount = () => {
@@ -69,6 +70,9 @@ class Login extends Component {
               value={this.state.password}
               onChange={e => this.handleChange(e)}
             />
+
+            {/* show error message */}
+            <span id="warning">{this.state.error}</span>
 
             <input type="submit" value="Login" />
           </form>
