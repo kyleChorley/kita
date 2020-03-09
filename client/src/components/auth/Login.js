@@ -7,6 +7,7 @@ class Login extends Component {
   state = {
     username: "",
     password: "",
+    isError: false,
     error: ""
   };
 
@@ -27,7 +28,8 @@ class Login extends Component {
       if (data.message) {
         // handle errors
         this.setState({
-          error: data.message
+          error: data.message,
+          isError: true
         });
       } else {
         console.log(this.props);
@@ -38,12 +40,19 @@ class Login extends Component {
         this.props.history.push("/");
       }
     });
-    console.log("ERROR", this.state.error);
+    console.log("ERROR", this.state.error, this.state.isError);
   };
 
   componentDidMount = () => {
     if (this.props.user) {
       this.props.history.push("/");
+    }
+  };
+
+  errorMessage = () => {
+    console.log(this.state.error);
+    if (this.state.isError) {
+      return <span id="warning">{this.state.error}</span>;
     }
   };
 
@@ -72,7 +81,7 @@ class Login extends Component {
             />
 
             {/* show error message */}
-            <span id="warning">{this.state.error}</span>
+            {this.errorMessage()}
 
             <input type="submit" value="Login" />
           </form>
