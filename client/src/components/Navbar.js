@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/stylesheets/navbar.css";
-import { logout } from "./auth/AuthAxios";
+import { logout } from "./Auth/AuthAxios";
 import { logo } from "../assets/javascript/images";
 import Favorites from "./Favorites";
 

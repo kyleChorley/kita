@@ -6,8 +6,8 @@ import { Switch, Route } from "react-router-dom";
 // components
 import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
-import SignUp from "./components/auth/SignUp";
-import Login from "./components/auth/Login";
+import SignUp from "./components/Auth/SignUp";
+import Login from "./components/Auth/Login";
 import Favorites from "./components/Favorites";
 
 const App = props => {
