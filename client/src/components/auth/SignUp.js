@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { signup } from "./AuthAxios";
 // import GoogleButtonSignUp from "../GoogleButtonSignup";
+import "../../assets/stylesheets/form.css";
 
 class Signup extends Component {
   state = {
@@ -47,31 +48,34 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={this.state.username}
-            onChange={e => this.handleChange(e)}
-          />
+      <div className="flex flex-container center col">
+        <div className="box" id="signup">
+          <h1>Signup</h1>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              placeholder="Username"
+              type="text"
+              name="username"
+              value={this.state.username}
+              onChange={e => this.handleChange(e)}
+            />
 
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={e => this.handleChange(e)}
-          />
+            <input
+              placeholder="Password"
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={e => this.handleChange(e)}
+            />
 
-          <input type="submit" value="Signup" />
-        </form>
-        {/* <GoogleButtonSignUp /> */}
-        <p>
-          Already have account?
-          <Link to={"/"}> Login</Link>
-        </p>
+            <input type="submit" value="Signup" />
+          </form>
+          {/* <GoogleButtonSignUp /> */}
+          <p>
+            Already have account?
+            <Link to={"/"}> Login</Link>
+          </p>
+        </div>
       </div>
     );
   }

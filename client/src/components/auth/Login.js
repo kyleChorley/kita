@@ -59,7 +59,7 @@ class Login extends Component {
   render() {
     return (
       <div className="flex flex-container center col">
-        <div className="box">
+        <div className="box" id="login">
           <h1>Login</h1>
           <form onSubmit={this.handleSubmit} className="flex center col">
             {/* <label>Username:</label> */}
