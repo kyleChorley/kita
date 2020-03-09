@@ -35,7 +35,7 @@ const CardList = props => {
       shallow.splice(indexOfKita, 1);
       setFavorites({ shallow }, () => {
         // PUT -> REMOVE KITA FROM USER FAVORITES ARRAY AND DELETE ALLTOGETHER
-        axios.put(`/kitas/favorite`, kita).then(response => {
+        axios.put(`/kitaDetailCard/favorite`, kita).then(response => {
           console.log(response);
         });
       });
@@ -45,7 +45,7 @@ const CardList = props => {
       setFavorites([...favorites, kita], () => {
         console.log(favorites);
         //POST -> CREATING A PRODUCT
-        axios.post("/kitas/favorite", kita).then(response => {
+        axios.post("/kitaDetailCard/favorite", kita).then(response => {
           console.log(response);
         });
       });
