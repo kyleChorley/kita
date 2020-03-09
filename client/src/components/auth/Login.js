@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { login } from "./AuthAxios";
+import "../../assets/stylesheets/form.css";
 
 class Login extends Component {
   state = {
@@ -47,17 +48,21 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>Username:</label>
+      <div className="flex flex-container center col">
+        <h1>Login</h1>
+        <form onSubmit={this.handleSubmit} className="flex center col">
+          {/* <label>Username:</label> */}
           <input
+            placeholder="Username"
+            className="center"
             type="text"
             name="username"
             value={this.state.username}
             onChange={e => this.handleChange(e)}
           />
-          <label>Password:</label>
+          {/* <label>Password:</label> */}
           <input
+            placeholder="Password"
             type="password"
             name="password"
             value={this.state.password}
