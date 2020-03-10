@@ -8,6 +8,7 @@ class Signup extends Component {
   state = {
     username: "",
     password: "",
+    isError: false,
     error: ""
   };
 
@@ -27,7 +28,8 @@ class Signup extends Component {
       if (data.message) {
         // handle errors
         this.setState({
-          error: data.message
+          error: data.message,
+          isError: true
         });
       } else {
         console.log("no error", data);
@@ -43,6 +45,13 @@ class Signup extends Component {
   componentDidMount = () => {
     if (this.props.user) {
       this.props.history.push("/");
+    }
+  };
+
+  errorMessage = () => {
+    console.log(this.state.error);
+    if (this.state.isError) {
+      return <span id="warning">{this.state.error}</span>;
     }
   };
 
@@ -67,6 +76,9 @@ class Signup extends Component {
               value={this.state.password}
               onChange={e => this.handleChange(e)}
             />
+
+            {/* show error message */}
+            {this.errorMessage()}
 
             <input type="submit" value="Signup" />
           </form>
