@@ -25,7 +25,7 @@ const CardList = props => {
   const [favorites, setFavorites] = useState([]);
 
   const clickHandle = kita => {
-    console.log(kita);
+    // console.log(kita);
     const kitaId = kita._id;
     // REMOVE PRODUCT FROM FAVORITES
     // IF -> IF PRODUCT IS ALREADY IN THE FAVORITES
@@ -43,23 +43,23 @@ const CardList = props => {
       // ELSE -> PRODUCT TO BE ADDED
     } else {
       setFavorites([...favorites, kita], () => {
-        console.log(favorites);
+        // console.log(favorites);
         //POST -> CREATING A PRODUCT
         axios.post("/kitas/favorite", kita).then(response => {
-          console.log(response);
+          // console.log(response);
         });
       });
     }
   };
 
-  console.log(props);
+  // console.log(props);
 
   return (
     <div className="card-list">
       <SearchForm handleSearch={props.handleSearch} query={props.query} />
 
       {props.kitas.map((kita, index) => {
-        console.log(kita);
+        // console.log(kita);
         const kitaInfo = {
           kitaId: kita._id,
           fromAge: kita.fruehestesAufnahmealterInMonaten,

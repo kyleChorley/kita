@@ -17,7 +17,7 @@ const App = props => {
   const [user, setUser] = useState(props.loggedInUser);
   // const [loggedinUser, setLoggedinUser] = useState(null);
 
-  console.log(props);
+  // console.log(props);
 
   const { kitas, hasMore, loading, error } = useKitaSearch(query, page, limit);
 

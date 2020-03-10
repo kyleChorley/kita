@@ -32,7 +32,7 @@ class Signup extends Component {
           isError: true
         });
       } else {
-        console.log("no error", data);
+        // console.log("no error", data);
         // no error
         // lift the data up to the App state
         this.props.setUser(data);
@@ -49,7 +49,7 @@ class Signup extends Component {
   };
 
   errorMessage = () => {
-    console.log(this.state.error);
+    // console.log(this.state.error);
     if (this.state.isError) {
       return <span id="warning">{this.state.error}</span>;
     }
