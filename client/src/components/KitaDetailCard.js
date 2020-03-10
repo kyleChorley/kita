@@ -11,10 +11,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const KitaDetailCard = props => {
-  console.log("Card props:", props);
+  // console.log("Card props:", props);
 
   const { kita, clickHandle, user, favorites } = props;
-  console.log(user);
+  // console.log(user);
 
   const starColor = (
     <>
@@ -48,7 +48,7 @@ const KitaDetailCard = props => {
     owner
   } = props.kitaInfo;
 
-  console.log(props);
+  // console.log(props);
 
   return (
     <div className="card">
