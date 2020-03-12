@@ -59,7 +59,7 @@ const KitaDetailCard = props => {
       <span className="card-header-span flex">
         {address}, {postCode} {city}
         <div className="btn">
-          <div onClick={() => clickHandle(kita)}>
+          <div onClick={() => clickHandle(props.kita, props.favorites)}>
             {props.relevant ? alreadyFavorite : starColor}
           </div>
         </div>

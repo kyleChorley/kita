@@ -26,12 +26,7 @@ const Navbar = props => {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink
-                to="/favorite"
-                render={props => <Favorites {...props} user={user} />}
-              >
-                Favorites
-              </NavLink>
+              <NavLink to="/favorite">Favorites</NavLink>
             </li>
             <li>
               <NavLink onClick={handleLogout} to="/">

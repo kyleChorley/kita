@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useState } from "react";
+import React, { useRef, useCallback, useState, useEffect } from "react";
 import KitaDetailCard from "../KitaDetailCard";
 import SearchForm from "../SearchForm";
 import axios from "axios";
@@ -23,29 +23,32 @@ const CardList = props => {
   );
 
   const [favorites, setFavorites] = useState([]);
+  console.log(favorites);
 
   const clickHandle = kita => {
-    console.log(kita);
+    console.log(favorites);
     const kitaId = kita._id;
     // REMOVE PRODUCT FROM FAVORITES
     // IF -> IF PRODUCT IS ALREADY IN THE FAVORITES
+    console.log(props);
     if (favorites.includes(kitaId)) {
       const shallow = [...favorites];
+      console.log(kita);
       const indexOfKita = shallow.indexOf(kitaId);
       shallow.splice(indexOfKita, 1);
-      setFavorites({ shallow }, () => {
+      setFavorites([shallow], () => {
         // PUT -> REMOVE KITA FROM USER FAVORITES ARRAY AND DELETE ALLTOGETHER
-        axios.put(`/kitaDetailCard/favorite`, kita).then(response => {
+        axios.put(`/kitaDetailCard/favorite`, favorites).then(response => {
           console.log(response);
         });
       });
       // ADD KITA TO FAVORITES
       // ELSE -> PRODUCT TO BE ADDED
     } else {
-      setFavorites([...favorites, kita], () => {
+      setFavorites([...favorites, kitaId], () => {
         console.log(favorites);
         //POST -> CREATING A PRODUCT
-        axios.post("/kitaDetailCard/favorite", kita).then(response => {
+        axios.post("/kitaDetailCard/favorite", favorites).then(response => {
           console.log(response);
         });
       });

@@ -21,6 +21,8 @@ const App = props => {
 
   const { kitas, hasMore, loading, error } = useKitaSearch(query, page, limit);
 
+  console.log(kitas);
+
   const handleSearch = event => {
     setQuery(event.target.value);
     setPage(1);
