@@ -121,7 +121,8 @@ function HooksMap(props) {
         return (
           <div>
             <Marker
-              key={cluster.kitaId}
+              
+              
               latitude={latitude}
               longitude={longitude}
             >
