@@ -2,11 +2,13 @@ import React, { useRef, useCallback, useState, useEffect } from "react";
 import KitaDetailCard from "../KitaDetailCard";
 import SearchForm from "../SearchForm";
 import axios from "axios";
+import useKitaSearch from "../../useKitaSearch";
 
 // Style
 import "../../assets/stylesheets/cardList.css";
 
 const CardList = props => {
+  const { kitas } = useKitaSearch("", 1, 0);
   const observer = useRef();
   const lastKitaElementRef = useCallback(
     node => {
@@ -23,10 +25,15 @@ const CardList = props => {
   );
 
   const [favorites, setFavorites] = useState([]);
-  console.log(favorites);
+
+  useEffect(() => {
+    console.log("USE EFFECT", kitas);
+  }, [favorites]);
+
+  console.log("one:", favorites);
 
   const clickHandle = kita => {
-    console.log(favorites);
+    console.log("two", favorites);
     const kitaId = kita._id;
     // REMOVE PRODUCT FROM FAVORITES
     // IF -> IF PRODUCT IS ALREADY IN THE FAVORITES
@@ -46,7 +53,7 @@ const CardList = props => {
       // ELSE -> PRODUCT TO BE ADDED
     } else {
       setFavorites([...favorites, kitaId], () => {
-        console.log(favorites);
+        console.log("three", favorites);
         //POST -> CREATING A PRODUCT
         axios.post("/kitaDetailCard/favorite", favorites).then(response => {
           console.log(response);
