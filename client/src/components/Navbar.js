@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/stylesheets/navbar.css";
-import { logout } from "./auth/AuthAxios";
+import { logout } from "./Auth/AuthAxios";
 import { logo } from "../assets/javascript/images";
 import Favorites from "./Favorites";
 
@@ -26,12 +26,7 @@ const Navbar = props => {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink
-                to="/favorite"
-                render={props => <Favorites {...props} user={user} />}
-              >
-                Favorites
-              </NavLink>
+              <NavLink to="/favorite">Favorites</NavLink>
             </li>
             <li>
               <NavLink onClick={handleLogout} to="/">

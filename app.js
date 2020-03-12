@@ -87,6 +87,9 @@ app.use("/auth", auth);
 const authRoutes = require("./routes/authRoutes");
 app.use("/api", authRoutes);
 
+const kitaDetailCardRoutes = require("./routes/kitaDetailCard");
+app.use("/kitaDetailCard", kitaDetailCardRoutes);
+
 app.get("/api/kita", paginatedResults(Kita), (req, res) => {
   res.json(res.paginatedResults);
 });
