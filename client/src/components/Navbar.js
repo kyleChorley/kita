@@ -14,7 +14,7 @@ const Navbar = props => {
     props.updateUser(null);
   };
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="nav flex center">

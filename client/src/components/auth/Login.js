@@ -32,7 +32,7 @@ class Login extends Component {
           isError: true
         });
       } else {
-        console.log(this.props);
+        // console.log(this.props);
         // no error
         // lift the data up to the App state
         this.props.setUser(data);
@@ -50,7 +50,7 @@ class Login extends Component {
   };
 
   errorMessage = () => {
-    console.log(this.state.error);
+    // console.log(this.state.error);
     if (this.state.isError) {
       return <span id="warning">{this.state.error}</span>;
     }

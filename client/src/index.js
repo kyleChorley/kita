@@ -8,7 +8,7 @@ import axios from "axios";
 
 axios.get("/api/loggedin").then(response => {
   const user = response.data;
-  console.log(user);
+  // console.log(user);
 
   ReactDOM.render(
     <Router>

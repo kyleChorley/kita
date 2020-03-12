@@ -3,7 +3,7 @@ import CardList from "./CardList";
 import HooksMap from "./HooksMap";
 
 export default function Home(props) {
-  console.log(props);
+  // console.log(props);
 
   const {
     query,
