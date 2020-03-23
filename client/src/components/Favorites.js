@@ -37,22 +37,38 @@ class Favorites extends Component {
   };
 
   render() {
-    console.log(this.props.user);
+    console.log(this.props);
     const { kitas } = this.props.user;
     return (
       <div className="card-list">
         {kitas.length ? (
-          kitas.map(post => {
+          kitas.map((post, index) => {
+            const kitaInfo = {
+              kitaId: post._id,
+              fromAge: post.fruehestesAufnahmealterInMonaten,
+              name: post.name,
+              address: post.adresse,
+              postCode: post.postleitzahl,
+              city: post.stadt,
+              cityQuarter: post.stadt,
+              type: post.einrichtungsart,
+              phone: post.telefon,
+              mail: post.email,
+              owner: post.traegerart
+            };
             console.log(post);
 
             return (
-              <KitaDetailCard
-                user={this.props.user}
-                kita={this.props.kita}
-                clickHandle={this.clickHandle}
-                favorites={kitas}
-                relevant={true}
-              />
+              <div key={post._id}>
+                <KitaDetailCard
+                  user={this.props.user}
+                  kita={this.props.kita}
+                  kitaInfo={kitaInfo}
+                  clickHandle={this.clickHandle}
+                  favorites={kitas}
+                  relevant={true}
+                />
+              </div>
             );
           })
         ) : (

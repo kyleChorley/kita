@@ -26,56 +26,7 @@ const CardList = props => {
 
   const [favorites, setFavorites] = useState([]);
 
-  // function useMongoFavesCall(route, kita) {
-  //   // const [kitaList, setKitaList] = useState([]);
-  //   const [error, setError] = useState(null);
-
-  //   const kitaId = kita._id;
-
-  //   if (favorites.includes(kitaId)) {
-  //     const shallow = [...favorites];
-  //     // console.log(shallow);
-  //     const indexOfKita = shallow.indexOf(kitaId);
-  //     shallow.splice(indexOfKita, 1);
-
-  //     setFavorites(
-  //       [shallow],
-  //       useEffect(() => {
-  //         axios
-  //           .put(route, favorites)
-  //           .then(response => {
-  //             console.log(response);
-  //           })
-  //           .catch(function(error) {
-  //             setError(error);
-  //           });
-  //       }, [route])
-  //     );
-  //     return { favorites, error };
-  //   } else {
-  //     setFavorites(
-  //       [...favorites, kitaId],
-  //       useEffect(() => {
-  //         axios
-  //           .post(route, favorites)
-  //           .then(response => {
-  //             console.log(response);
-  //           })
-  //           .catch(function(error) {
-  //             setError(error);
-  //           });
-  //       }, [route])
-  //     );
-  //   }
-  // }
-
-  useEffect(() => {
-    // if (!favorites) {
-    //   setFavorites([...props.user.kitas]);
-    // }
-  }, [favorites]);
-
-  // useEffect(() => {}, [favorites]);
+  useEffect(() => {}, [favorites]);
 
   console.log("one:", favorites);
 
@@ -128,6 +79,7 @@ const CardList = props => {
           mail: kita.email,
           owner: kita.traegerart
         };
+        console.log(kitaInfo);
 
         if (props.kitas.length === index + 1) {
           return (

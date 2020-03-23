@@ -19,7 +19,7 @@ const KitaDetailCard = props => {
   const starColor = (
     <>
       {user ? (
-        favorites.includes(kita._id) === false ? (
+        favorites.includes(kita) === false ? (
           <img className="favorite-star" src={StarBlack} alt="" />
         ) : (
           <img className="favorite-star" src={StarYellow} alt="" />
