@@ -26,15 +26,63 @@ const CardList = props => {
 
   const [favorites, setFavorites] = useState([]);
 
+  // function useMongoFavesCall(route, kita) {
+  //   // const [kitaList, setKitaList] = useState([]);
+  //   const [error, setError] = useState(null);
+
+  //   const kitaId = kita._id;
+
+  //   if (favorites.includes(kitaId)) {
+  //     const shallow = [...favorites];
+  //     // console.log(shallow);
+  //     const indexOfKita = shallow.indexOf(kitaId);
+  //     shallow.splice(indexOfKita, 1);
+
+  //     setFavorites(
+  //       [shallow],
+  //       useEffect(() => {
+  //         axios
+  //           .put(route, favorites)
+  //           .then(response => {
+  //             console.log(response);
+  //           })
+  //           .catch(function(error) {
+  //             setError(error);
+  //           });
+  //       }, [route])
+  //     );
+  //     return { favorites, error };
+  //   } else {
+  //     setFavorites(
+  //       [...favorites, kitaId],
+  //       useEffect(() => {
+  //         axios
+  //           .post(route, favorites)
+  //           .then(response => {
+  //             console.log(response);
+  //           })
+  //           .catch(function(error) {
+  //             setError(error);
+  //           });
+  //       }, [route])
+  //     );
+  //   }
+  // }
+
   useEffect(() => {
-    console.log("USE EFFECT", kitas);
+    // if (!favorites) {
+    //   setFavorites([...props.user.kitas]);
+    // }
   }, [favorites]);
+
+  // useEffect(() => {}, [favorites]);
 
   console.log("one:", favorites);
 
   const clickHandle = kita => {
     console.log("two", favorites);
-    const kitaId = kita._id;
+    console.log(kita);
+    const kitaId = kita.kitaId;
     // REMOVE PRODUCT FROM FAVORITES
     // IF -> IF PRODUCT IS ALREADY IN THE FAVORITES
     console.log(props);
@@ -43,22 +91,19 @@ const CardList = props => {
       console.log(kita);
       const indexOfKita = shallow.indexOf(kitaId);
       shallow.splice(indexOfKita, 1);
-      setFavorites([shallow], () => {
-        // PUT -> REMOVE KITA FROM USER FAVORITES ARRAY AND DELETE ALLTOGETHER
-        axios.put(`/kitaDetailCard/favorite`, favorites).then(response => {
-          console.log(response);
-        });
+      setFavorites([shallow]);
+      axios.put(`/kitaDetailCard/favorite`, favorites).then(response => {
+        console.log(response);
       });
+
       // ADD KITA TO FAVORITES
       // ELSE -> PRODUCT TO BE ADDED
     } else {
-      setFavorites([...favorites, kitaId], () => {
-        console.log("three", favorites);
-        //POST -> CREATING A PRODUCT
-        axios.post("/kitaDetailCard/favorite", favorites).then(response => {
-          console.log(response);
-        });
+      setFavorites([...favorites, kitaId]);
+      axios.post("/kitaDetailCard/favorite", favorites).then(response => {
+        console.log(response);
       });
+      console.log("three", favorites);
     }
   };
 
