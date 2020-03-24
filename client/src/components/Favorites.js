@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import KitaDetailCard from "../components/KitaDetailCard";
 import axios from "axios";
 
+//Style
+import "../assets/stylesheets/cardList.css";
+
 class Favorites extends Component {
   state = { favorites: null };
 
@@ -56,7 +59,7 @@ class Favorites extends Component {
               mail: post.email,
               owner: post.traegerart
             };
-            console.log(post);
+            console.log(kitaInfo);
 
             return (
               <div key={post._id}>
