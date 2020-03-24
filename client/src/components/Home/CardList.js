@@ -58,7 +58,7 @@ const CardList = props => {
     }
   };
 
-  console.log(props);
+  console.log(props.kitas);
 
   return (
     <div className="card-list">
@@ -85,9 +85,10 @@ const CardList = props => {
           return (
             <div key={kita._id} ref={lastKitaElementRef}>
               <KitaDetailCard
-                kitaInfo={kitaInfo}
+                kitaInfo={props.kitas}
                 user={props.user}
                 kita={kita}
+                kitaInfo={kitaInfo}
                 clickHandle={clickHandle}
                 favorites={favorites}
               />
@@ -97,9 +98,10 @@ const CardList = props => {
           return (
             <div key={kita._id}>
               <KitaDetailCard
-                kitaInfo={kitaInfo}
+                kitaInfo={props.kitas}
                 user={props.user}
                 kita={kita}
+                kitaInfo={kitaInfo}
                 clickHandle={clickHandle}
                 favorites={favorites}
               />

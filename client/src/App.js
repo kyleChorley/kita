@@ -30,7 +30,7 @@ const App = props => {
 
   return (
     <div className="main-app">
-      <Navbar {...props} updateUser={setUser} user={user} />
+      <Navbar {...props} updateUser={setUser} user={user} kitas={kitas} />
       <Switch>
         <Route
           path="/auth"
@@ -43,7 +43,7 @@ const App = props => {
         <Route
           path="/favorite"
           render={props => (
-            <Favorites {...props} user={user} setUser={setUser} />
+            <Favorites {...props} user={user} setUser={setUser} kitas={kitas} />
           )}
         />
         <Route

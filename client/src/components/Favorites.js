@@ -28,12 +28,12 @@ class Favorites extends Component {
       const shallow = [...favorites];
       const indexOfKita = shallow.indexOf(daycare);
       shallow.splice(indexOfKita, 1);
-      this.setState({ favorites: shallow }, () => {
-        // PUT -> REMOVE KITA FROM USER FAVORITES ARRAY AND DELETE ALLTOGETHER
-        axios.put(`/kitaDetailCard/favorite`, kita).then(response => {
-          this.getData();
-        });
+      this.setState({ favorites: shallow });
+      // PUT -> REMOVE KITA FROM USER FAVORITES ARRAY AND DELETE ALLTOGETHER
+      axios.put(`/kitaDetailCard/favorite`, kita).then(response => {
+        this.getData();
       });
+
       // ADD KITA TO FAVORITES
       // ELSE -> KITA TO BE ADDED
     }
@@ -46,27 +46,32 @@ class Favorites extends Component {
       <div className="card-list">
         {kitas.length ? (
           kitas.map((post, index) => {
-            const kitaInfo = {
-              kitaId: post._id,
-              fromAge: post.fruehestesAufnahmealterInMonaten,
-              name: post.name,
-              address: post.adresse,
-              postCode: post.postleitzahl,
-              city: post.stadt,
-              cityQuarter: post.stadt,
-              type: post.einrichtungsart,
-              phone: post.telefon,
-              mail: post.email,
-              owner: post.traegerart
-            };
-            console.log(kitaInfo);
+            console.log(post);
+            {
+              const kitaInfo = {
+                kitaId: post._id,
+                fromAge: post.fruehestesAufnahmealterInMonaten,
+                name: post.name,
+                address: post.adresse,
+                postCode: post.postleitzahl,
+                city: post.stadt,
+                cityQuarter: post.stadt,
+                type: post.einrichtungsart,
+                phone: post.telefon,
+                mail: post.email,
+                owner: post.traegerart
+              };
+            }
+            {
+              /* console.log(kitaInfo); */
+            }
 
             return (
               <div key={post._id}>
                 <KitaDetailCard
                   user={this.props.user}
-                  kita={this.props.kita}
-                  kitaInfo={kitaInfo}
+                  kitas={kitas}
+                  // kitaInfo={kitaInfo}
                   clickHandle={this.clickHandle}
                   favorites={kitas}
                   relevant={true}
