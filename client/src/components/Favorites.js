@@ -42,28 +42,27 @@ class Favorites extends Component {
   render() {
     console.log(this.props);
     const { kitas } = this.props.user;
+    console.log(kitas);
     return (
       <div className="card-list">
         {kitas.length ? (
           kitas.map((post, index) => {
             console.log(post);
+
             {
-              const kitaInfo = {
-                kitaId: post._id,
-                fromAge: post.fruehestesAufnahmealterInMonaten,
-                name: post.name,
-                address: post.adresse,
-                postCode: post.postleitzahl,
-                city: post.stadt,
-                cityQuarter: post.stadt,
-                type: post.einrichtungsart,
-                phone: post.telefon,
-                mail: post.email,
-                owner: post.traegerart
-              };
-            }
-            {
-              /* console.log(kitaInfo); */
+              /* const kitaInfo = {
+              kitaId: post._id,
+              fromAge: post.fruehestesAufnahmealterInMonaten,
+              name: post.name,
+              address: post.adresse,
+              postCode: post.postleitzahl,
+              city: post.stadt,
+              cityQuarter: post.stadt,
+              type: post.einrichtungsart,
+              phone: post.telefon,
+              mail: post.email,
+              owner: post.traegerart
+            }; */
             }
 
             return (
@@ -72,6 +71,7 @@ class Favorites extends Component {
                   user={this.props.user}
                   kitas={kitas}
                   // kitaInfo={kitaInfo}
+                  post={post}
                   clickHandle={this.clickHandle}
                   favorites={kitas}
                   relevant={true}
