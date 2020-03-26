@@ -46,7 +46,7 @@ const KitaDetailCard = props => {
     phone,
     mail,
     owner
-  } = props.kitas;
+  } = props.kitaInfo;
 
   console.log(props);
 
